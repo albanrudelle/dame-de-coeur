@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply font-sans text-charcoal bg-ivory antialiased; }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-outline-dark {
+    @apply inline-flex items-center gap-3 border border-charcoal text-charcoal
+    font-sans text-[10px] font-medium tracking-widest2 uppercase px-8 py-4
+    bg-transparent transition-all duration-200
+    hover:bg-charcoal hover:text-white;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center gap-3 border border-white/60 text-white
+    font-sans text-[10px] font-medium tracking-widest2 uppercase px-8 py-4
+    bg-transparent transition-all duration-200
+    hover:bg-white/10 hover:border-white;
+  }
+  .btn-gold {
+    @apply inline-flex items-center gap-3 bg-gold-light border border-gold-light text-charcoal
+    font-sans text-[10px] font-medium tracking-widest2 uppercase px-8 py-4
+    transition-all duration-200 hover:bg-[#DDD0BE];
+  }
+
+  /* Section labels */
+  .eyebrow {
+    @apply flex items-center gap-3 text-[10px] font-sans font-medium
+    tracking-widest2 uppercase text-gold;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block w-6 h-px bg-gold flex-shrink-0;
+  }
+
+  /* Ornament divider */
+  .ornament {
+    @apply flex items-center justify-center gap-5 text-gold text-sm;
+  }
+  .ornament::before, .ornament::after {
+    content: '';
+    @apply block w-10 h-px bg-gold;
+  }
+
+  /* Form fields — borderless underline style */
+  .field {
+    @apply w-full border-0 border-b border-border pb-3 pt-1
+    font-sans font-light text-sm text-charcoal bg-transparent
+    outline-none transition-colors duration-200
+    placeholder:text-border focus:border-charcoal;
+  }
+  .field-label {
+    @apply block text-[10px] font-sans font-medium tracking-widest uppercase text-mid mb-1;
+  }
+  .field-error { @apply text-[11px] text-red-600 mt-1; }
+
+  /* Link with animated underline arrow */
+  .link-arrow {
+    @apply inline-flex items-center gap-3 text-[10px] font-sans font-medium
+    tracking-widest uppercase text-charcoal transition-all duration-200;
+  }
+  .link-arrow::after {
+    content: '';
+    @apply block w-8 h-px bg-charcoal transition-all duration-200;
+  }
+  .link-arrow:hover { @apply gap-4; }
+  .link-arrow:hover::after { @apply w-12; }
+
+  /* Tags */
+  .etag {
+    @apply text-[10px] font-sans font-medium tracking-[0.1em] uppercase
+    text-gold border border-gold-light px-3 py-1;
+  }
+}
