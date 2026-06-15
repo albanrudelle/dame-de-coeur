@@ -136,7 +136,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <Link href="/mariages" className="link-arrow" style={{ color: 'white' }}
+          <Link href="/mariages" className="link-arrow" style={{ color: 'white' }}>
             Planifier votre mariage
             <span className="block w-8 h-px bg-white transition-all" />
           </Link>
