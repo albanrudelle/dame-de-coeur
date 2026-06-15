@@ -1,44 +1,183 @@
-'use client'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { contactSchema, type ContactFormData } from '@/lib/schemas'
-import { EVENT_TYPES, ESPACE_OPTIONS } from '@/lib/constants'
-import clsx from 'clsx'
+'use client';
 
-export function ContactForm() {
-  const [status, setStatus] = useState<'idle'|'loading'|'success'|'error'>('idle')
-  const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) })
-  async function onSubmit(data: ContactFormData) {
-    setStatus('loading')
+import { useState } from 'react';
+
+type FormData = {
+  nom: string;
+  email: string;
+  telephone: string;
+  date: string;
+  invites: string;
+  message: string;
+};
+
+const initialFormData: FormData = {
+  nom: '',
+  email: '',
+  telephone: '',
+  date: '',
+  invites: '',
+  message: '',
+};
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+
     try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      if (!res.ok) throw new Error()
-      setStatus('success')
-    } catch { setStatus('error') }
-  }
-  if (status === 'success') return <div className="py-16 text-center"><div className="font-serif text-5xl text-gold mb-6">✦</div><h3 className="font-serif text-3xl font-light mb-3">Demande envoyée</h3><p className="font-sans text-sm font-light text-mid">Nous reviendrons vers vous sous 24 heures ouvrées.</p></div>
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData(initialFormData);
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div><label className="field-label">Prénom *</label><input {...register('prenom')} type="text" placeholder="Marie" className={clsx('field', errors.prenom && 'border-b-red-500')} />{errors.prenom && <p className="field-error">{errors.prenom.message}</p>}</div>
-        <div><label className="field-label">Nom</label><input {...register('nom')} type="text" placeholder="Dupont" className="field" /></div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Nom */}
+      <div>
+        <label htmlFor="nom" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Nom complet *
+        </label>
+        <input
+          id="nom"
+          name="nom"
+          type="text"
+          required
+          value={formData.nom}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
+          placeholder="Votre nom"
+        />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div><label className="field-label">Email *</label><input {...register('email')} type="email" placeholder="marie@email.fr" className={clsx('field', errors.email && 'border-b-red-500')} />{errors.email && <p className="field-error">{errors.email.message}</p>}</div>
-        <div><label className="field-label">Téléphone</label><input {...register('telephone')} type="tel" placeholder="06 XX XX XX XX" className="field" /></div>
+
+      {/* Email */}
+      <div>
+        <label htmlFor="email" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Email *
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
+          placeholder="votre@email.com"
+        />
       </div>
-      <div><label className="field-label">Type d&apos;événement *</label><select {...register('typeEvenement')} className={clsx('field cursor-pointer', errors.typeEvenement && 'border-b-red-500')}><option value="">Sélectionner</option>{EVENT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}</select>{errors.typeEvenement && <p className="field-error">{errors.typeEvenement.message}</p>}</div>
-      <div><label className="field-label">Espace souhaité</label><select {...register('espace')} className="field cursor-pointer"><option value="">Sélectionner</option>{ESPACE_OPTIONS.map(e => <option key={e} value={e}>{e}</option>)}</select></div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-        <div><label className="field-label">Date souhaitée *</label><input {...register('date')} type="date" className={clsx('field', errors.date && 'border-b-red-500')} />{errors.date && <p className="field-error">{errors.date.message}</p>}</div>
-        <div><label className="field-label">Nombre de convives *</label><input {...register('nombrePersonnes')} type="number" placeholder="80" className={clsx('field', errors.nombrePersonnes && 'border-b-red-500')} />{errors.nombrePersonnes && <p className="field-error">{errors.nombrePersonnes.message}</p>}</div>
+
+      {/* Téléphone */}
+      <div>
+        <label htmlFor="telephone" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Téléphone
+        </label>
+        <input
+          id="telephone"
+          name="telephone"
+          type="tel"
+          value={formData.telephone}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
+          placeholder="+33 6 00 00 00 00"
+        />
       </div>
-      <div><label className="field-label">Message</label><textarea {...register('message')} rows={3} placeholder="Décrivez votre projet…" className="field resize-none" /></div>
-      <div className="border-y border-border py-5 font-sans text-xs font-light text-mid leading-relaxed">Vos données sont utilisées uniquement pour traiter votre demande. Aucun démarchage. Réponse sous 24h.</div>
-      {status === 'error' && <p className="text-sm text-red-600 font-light">Une erreur est survenue. Veuillez nous appeler directement.</p>}
-      <button type="submit" disabled={status === 'loading'} className="w-full bg-charcoal text-white font-sans text-[10px] font-medium tracking-widest2 uppercase py-5 border-none transition-all hover:bg-charcoal/80 disabled:opacity-50">{status === 'loading' ? 'Envoi en cours…' : 'Envoyer la demande'}</button>
-      <p className="text-center font-sans text-[11px] font-light text-mid">Champs * obligatoires</p>
+
+      {/* Date souhaitée */}
+      <div>
+        <label htmlFor="date" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Date souhaitée
+        </label>
+        <input
+          id="date"
+          name="date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
+        />
+      </div>
+
+      {/* Nombre d'invités */}
+      <div>
+        <label htmlFor="invites" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Nombre d&apos;invités
+        </label>
+        <select
+          id="invites"
+          name="invites"
+          value={formData.invites}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-cream px-4 py-3 text-charcoal focus:outline-none focus:border-gold transition-colors"
+        >
+          <option value="">Sélectionner</option>
+          <option value="moins-50">Moins de 50</option>
+          <option value="50-100">50 – 100</option>
+          <option value="100-150">100 – 150</option>
+          <option value="150-200">150 – 200</option>
+          <option value="plus-200">Plus de 200</option>
+        </select>
+      </div>
+
+      {/* Message */}
+      <div>
+        <label htmlFor="message" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
+          Message *
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={5}
+          value={formData.message}
+          onChange={handleChange}
+          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors resize-none"
+          placeholder="Décrivez votre projet..."
+        />
+      </div>
+
+      {/* Submit */}
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="w-full bg-charcoal text-cream py-4 text-sm tracking-widest uppercase hover:bg-gold hover:text-charcoal transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {status === 'loading' ? 'Envoi en cours…' : 'Envoyer la demande'}
+      </button>
+
+      {/* Feedback */}
+      {status === 'success' && (
+        <p className="text-center text-sm tracking-wide text-green-700">
+          Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
+        </p>
+      )}
+      {status === 'error' && (
+        <p className="text-center text-sm tracking-wide text-red-700">
+          Une erreur est survenue. Veuillez réessayer ou nous contacter directement.
+        </p>
+      )}
     </form>
-  )
+  );
 }
