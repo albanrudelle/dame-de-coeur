@@ -137,7 +137,6 @@ export default function HomePage() {
             ))}
           </ul>
           <Link href="/mariages" className="link-arrow" style={{ color: 'white' }}
-            onMouseEnter={e => {(e.currentTarget.querySelector('span') as HTMLElement)?.classList.add('w-12')}}>
             Planifier votre mariage
             <span className="block w-8 h-px bg-white transition-all" />
           </Link>
