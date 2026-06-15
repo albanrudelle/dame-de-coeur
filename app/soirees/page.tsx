@@ -84,3 +84,5 @@ export default function SoireesPage() {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic'

@@ -117,3 +117,5 @@ export default function EspacesPage() {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic'

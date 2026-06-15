@@ -92,3 +92,5 @@ export default function ContactPage() {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic'

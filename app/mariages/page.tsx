@@ -133,3 +133,5 @@ export default function MariagesPage() {
     </>
   )
 }
+
+export const dynamic = 'force-dynamic'
