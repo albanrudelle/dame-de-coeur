@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import { DisposBand } from '@/components/DisposBand'
-import { ContactForm } from '@/components/ContactForm'
+import ContactForm from '@/components/ContactForm'
 import { SITE, DISPONIBILITES } from '@/lib/constants'
 
 export const metadata: Metadata = {
