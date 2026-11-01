@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply font-sans text-charcoal bg-ivory antialiased; }
+  body { @apply font-sans text-charcoal antialiased; background-color: #f5f2ec; }
 }
 
 @layer components {

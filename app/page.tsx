@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Configurator } from '@/components/home/Configurator'
-import { ESPACES, TEMOIGNAGES } from '@/lib/constants'
+import { Temoignages } from '@/components/Temoignages'
+import { ESPACES } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Domaine la Dame de Cœur — Salle de réception & discothèque en Corrèze',
@@ -26,8 +27,6 @@ const GALERIE = [
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
 
 export default function HomePage() {
-  const t = TEMOIGNAGES[0]
-
   return (
     <div className="dc">
       {/* HERO */}
@@ -77,7 +76,7 @@ export default function HomePage() {
         </div>
         <div className="spaces-grid">
           {ESPACES.map((e, i) => (
-            <Link className="space-card" href="/espaces" key={e.slug}>
+            <Link className="space-card" href={`/espaces#${e.slug}`} key={e.slug}>
               <Image src={e.img} alt={e.titre} fill sizes="(max-width: 680px) 100vw, 50vw" />
               <div className="space-content">
                 <div className="space-topline">{SPACE_LINES[i]}</div>
@@ -142,14 +141,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TÉMOIGNAGE */}
-      <section className="testimonial section-tone">
-        <div className="wrap">
-          <div className="eyebrow" style={{ justifyContent: 'center' }}>Ils nous ont fait confiance</div>
-          <p className="quote">« {t.quote} »</p>
-          <div className="quote-by">{t.author} · {t.event}</div>
-        </div>
-      </section>
+      <Temoignages />
 
       {/* CONTACT */}
       <section className="contact-band">

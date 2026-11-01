@@ -7,18 +7,6 @@ export const SITE = {
   url:      process.env.NEXT_PUBLIC_SITE_URL ?? 'https://domaine-dame-de-coeur.fr',
 }
 
-export const DISPONIBILITES = [
-  { date: '14 juin 2025',  libre: false },
-  { date: '21 juin 2025',  libre: false },
-  { date: '5 juil. 2025',  libre: true  },
-  { date: '19 juil. 2025', libre: true  },
-  { date: '2 août 2025',   libre: false },
-  { date: '6 sept. 2025',  libre: true  },
-  { date: '20 sept. 2025', libre: true  },
-  { date: '4 oct. 2025',   libre: true  },
-  { date: '18 oct. 2025',  libre: false },
-]
-
 export const TEMOIGNAGES = [
   {
     stars: 5,

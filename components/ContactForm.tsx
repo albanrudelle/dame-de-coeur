@@ -1,183 +1,189 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
+import { useState, type ChangeEvent, type FormEvent, type ReactNode } from 'react'
+import { contactSchema } from '@/lib/schemas'
+import { EVENT_TYPES, ESPACE_OPTIONS } from '@/lib/constants'
 
-type FormData = {
-  nom: string;
-  email: string;
-  telephone: string;
-  date: string;
-  invites: string;
-  message: string;
-};
+type Values = {
+  prenom: string
+  nom: string
+  email: string
+  telephone: string
+  typeEvenement: string
+  espace: string
+  date: string
+  nombrePersonnes: string
+  message: string
+  website: string // champ piège anti-spam : doit rester vide
+}
+type Errors = Partial<Record<keyof Values, string>>
+type Status = 'idle' | 'loading' | 'success' | 'error'
 
-const initialFormData: FormData = {
-  nom: '',
-  email: '',
-  telephone: '',
-  date: '',
-  invites: '',
-  message: '',
-};
+function localToday() {
+  const d = new Date()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${m}-${day}`
+}
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+function Field({ id, label, error, optional, children }: {
+  id: string
+  label: string
+  error?: string
+  optional?: boolean
+  children: ReactNode
+}) {
+  return (
+    <div className="dc-field">
+      <label htmlFor={id}>
+        {label}
+        {optional ? <span className="muted" style={{ fontWeight: 400 }}> (facultatif)</span> : null}
+      </label>
+      {children}
+      {error ? <p className="field-error" id={`${id}-error`} role="alert">{error}</p> : null}
+    </div>
+  )
+}
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+export default function ContactForm({ defaultType = '', defaultDate = '' }: {
+  defaultType?: string
+  defaultDate?: string
+}) {
+  const [values, setValues] = useState<Values>({
+    prenom: '', nom: '', email: '', telephone: '',
+    typeEvenement: defaultType, espace: '', date: defaultDate, nombrePersonnes: '',
+    message: '', website: '',
+  })
+  const [errors, setErrors] = useState<Errors>({})
+  const [status, setStatus] = useState<Status>('idle')
+  const [sentName, setSentName] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('loading');
+  function onChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    const { name, value } = e.target
+    setValues(prev => ({ ...prev, [name]: value }))
+    setErrors(prev => ({ ...prev, [name]: undefined }))
+  }
 
+  const a11y = (k: keyof Values) => ({
+    'aria-invalid': errors[k] ? true : undefined,
+    'aria-describedby': errors[k] ? `${k}-error` : undefined,
+  })
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (status === 'loading') return
+
+    const next: Errors = {}
+    const parsed = contactSchema.safeParse(values)
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const key = String(issue.path[0]) as keyof Values
+        if (!next[key]) next[key] = issue.message
+      }
+    }
+    if (!next.date && values.date && values.date < localToday()) {
+      next.date = 'Cette date est déjà passée'
+    }
+    if (Object.keys(next).length > 0) {
+      setErrors(next)
+      return
+    }
+
+    setStatus('loading')
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        setStatus('success');
-        setFormData(initialFormData);
-      } else {
-        setStatus('error');
-      }
+        body: JSON.stringify(values),
+      })
+      if (!res.ok) throw new Error(String(res.status))
+      setSentName(values.prenom)
+      setStatus('success')
     } catch {
-      setStatus('error');
+      setStatus('error')
     }
-  };
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="success" role="status">
+        <div className="intro-mark" aria-hidden="true">✳</div>
+        <h2>Merci {sentName}, votre demande est bien partie.</h2>
+        <p className="lead">Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.</p>
+      </div>
+    )
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Nom */}
-      <div>
-        <label htmlFor="nom" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Nom complet *
-        </label>
-        <input
-          id="nom"
-          name="nom"
-          type="text"
-          required
-          value={formData.nom}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
-          placeholder="Votre nom"
-        />
+    <form onSubmit={onSubmit} noValidate>
+      <div className="field-row">
+        <Field id="prenom" label="Prénom" error={errors.prenom}>
+          <input id="prenom" name="prenom" autoComplete="given-name" value={values.prenom} onChange={onChange} {...a11y('prenom')} />
+        </Field>
+        <Field id="nom" label="Nom" optional error={errors.nom}>
+          <input id="nom" name="nom" autoComplete="family-name" value={values.nom} onChange={onChange} {...a11y('nom')} />
+        </Field>
       </div>
 
-      {/* Email */}
-      <div>
-        <label htmlFor="email" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Email *
-        </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
-          placeholder="votre@email.com"
-        />
+      <div className="field-row">
+        <Field id="email" label="Adresse e-mail" error={errors.email}>
+          <input id="email" name="email" type="email" autoComplete="email" placeholder="vous@exemple.fr" value={values.email} onChange={onChange} {...a11y('email')} />
+        </Field>
+        <Field id="telephone" label="Téléphone" optional error={errors.telephone}>
+          <input id="telephone" name="telephone" type="tel" autoComplete="tel" placeholder="06 00 00 00 00" value={values.telephone} onChange={onChange} {...a11y('telephone')} />
+        </Field>
       </div>
 
-      {/* Téléphone */}
-      <div>
-        <label htmlFor="telephone" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Téléphone
-        </label>
-        <input
-          id="telephone"
-          name="telephone"
-          type="tel"
-          value={formData.telephone}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
-          placeholder="+33 6 00 00 00 00"
-        />
+      <div className="field-row">
+        <Field id="typeEvenement" label="Type d'événement" error={errors.typeEvenement}>
+          <select id="typeEvenement" name="typeEvenement" value={values.typeEvenement} onChange={onChange} {...a11y('typeEvenement')}>
+            <option value="">Sélectionner</option>
+            {EVENT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </Field>
+        <Field id="espace" label="Espace souhaité" optional error={errors.espace}>
+          <select id="espace" name="espace" value={values.espace} onChange={onChange} {...a11y('espace')}>
+            <option value="">Sélectionner</option>
+            {ESPACE_OPTIONS.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </Field>
       </div>
 
-      {/* Date souhaitée */}
-      <div>
-        <label htmlFor="date" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Date souhaitée
-        </label>
-        <input
-          id="date"
-          name="date"
-          type="date"
-          value={formData.date}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors"
-        />
+      <div className="field-row">
+        <Field id="date" label="Date souhaitée" error={errors.date}>
+          <input id="date" name="date" type="date" value={values.date} onChange={onChange} {...a11y('date')} />
+        </Field>
+        <Field id="nombrePersonnes" label="Nombre de personnes" error={errors.nombrePersonnes}>
+          <input id="nombrePersonnes" name="nombrePersonnes" type="number" inputMode="numeric" min={1} max={300} placeholder="Ex : 80" value={values.nombrePersonnes} onChange={onChange} {...a11y('nombrePersonnes')} />
+        </Field>
       </div>
 
-      {/* Nombre d'invités */}
-      <div>
-        <label htmlFor="invites" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Nombre d&apos;invités
+      <Field id="message" label="Votre projet" optional error={errors.message}>
+        <textarea id="message" name="message" rows={4} placeholder="Décrivez-nous votre événement, vos envies, vos questions…" value={values.message} onChange={onChange} {...a11y('message')} />
+      </Field>
+
+      {/* Champ piège pour les robots : invisible, ne pas remplir */}
+      <div className="hp" aria-hidden="true">
+        <label>Ne pas remplir
+          <input name="website" tabIndex={-1} autoComplete="off" value={values.website} onChange={onChange} />
         </label>
-        <select
-          id="invites"
-          name="invites"
-          value={formData.invites}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-cream px-4 py-3 text-charcoal focus:outline-none focus:border-gold transition-colors"
-        >
-          <option value="">Sélectionner</option>
-          <option value="moins-50">Moins de 50</option>
-          <option value="50-100">50 – 100</option>
-          <option value="100-150">100 – 150</option>
-          <option value="150-200">150 – 200</option>
-          <option value="plus-200">Plus de 200</option>
-        </select>
       </div>
 
-      {/* Message */}
-      <div>
-        <label htmlFor="message" className="block text-sm tracking-widest uppercase text-charcoal/70 mb-2">
-          Message *
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full border border-charcoal/20 bg-transparent px-4 py-3 text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-gold transition-colors resize-none"
-          placeholder="Décrivez votre projet..."
-        />
-      </div>
-
-      {/* Submit */}
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="w-full bg-charcoal text-cream py-4 text-sm tracking-widest uppercase hover:bg-gold hover:text-charcoal transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {status === 'loading' ? 'Envoi en cours…' : 'Envoyer la demande'}
+      <button type="submit" className="button" style={{ width: '100%' }} disabled={status === 'loading'}>
+        {status === 'loading' ? 'Envoi en cours…' : <>Envoyer ma demande <span aria-hidden="true">↗</span></>}
       </button>
 
-      {/* Feedback */}
-      {status === 'success' && (
-        <p className="text-center text-sm tracking-wide text-green-700">
-          Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
-        </p>
-      )}
-      {status === 'error' && (
-        <p className="text-center text-sm tracking-wide text-red-700">
-          Une erreur est survenue. Veuillez réessayer ou nous contacter directement.
-        </p>
-      )}
+      <div aria-live="polite">
+        {status === 'error' && (
+          <p className="form-status error">
+            Votre demande n&apos;a pas pu être envoyée. Merci de réessayer dans un instant ou de nous contacter directement.
+          </p>
+        )}
+      </div>
+
+      <p className="fineprint">
+        Sans engagement. Vos informations servent uniquement à répondre à votre demande (<a href="/mentions-legales#rgpd">en savoir plus</a>).
+      </p>
     </form>
-  );
+  )
 }

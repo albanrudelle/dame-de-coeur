@@ -2,9 +2,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { ESPACES } from '@/lib/constants'
+import { ESPACES, EVENT_TYPES } from '@/lib/constants'
 
-const EVENTS = ['Mariage', 'Anniversaire', 'EVJF / EVG', 'Soirée d\'entreprise', 'Repas de famille', 'Autre événement']
+const EVENTS = EVENT_TYPES
 const GUESTS = ['Moins de 50 personnes', '50 à 100 personnes', '100 à 150 personnes']
 const CHOICES = [
   { id: 'banquet',  label: 'Banquet assis' },
@@ -28,6 +28,7 @@ export function Configurator() {
   const comboText = small
     ? 'Le cocktail ou le dîner au bar lounge, puis la soirée sur la piste LED.'
     : 'Le repas sous les lustres, puis la soirée sur la piste LED.'
+  const contactHref = `/contact?type=${encodeURIComponent(eventType)}${date ? `&date=${date}` : ''}`
   const pref = choice === 'banquet' ? 'banquet assis' : choice === 'cocktail' ? 'cocktail' : 'configuration à définir'
 
   function submit(e: React.FormEvent) {
@@ -115,7 +116,7 @@ export function Configurator() {
           Ces pistes sont indicatives et ne constituent pas une confirmation de disponibilité. Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.
         </div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 17 }}>
-          <Link href="/contact" className="button">Demander un devis ↗</Link>
+          <Link href={contactHref} className="button">Demander un devis ↗</Link>
           <button className="button button-outline" onClick={reset}>Modifier mes critères</button>
         </div>
       </div>

@@ -1,95 +1,74 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { Suspense } from 'react'
-import { DisposBand } from '@/components/DisposBand'
 import ContactForm from '@/components/ContactForm'
-import { SITE, DISPONIBILITES } from '@/lib/constants'
+import { SITE, EVENT_TYPES } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Faire une demande — Disponibilités & devis',
   description: 'Vérifiez la disponibilité de votre date et recevez un devis personnalisé sous 24h. Domaine la Dame de Cœur, Ménoire, Corrèze.',
 }
 
-export default function ContactPage() {
+type Props = { searchParams: { [key: string]: string | string[] | undefined } }
+
+function first(v: string | string[] | undefined) {
+  return Array.isArray(v) ? v[0] : v
+}
+
+export default function ContactPage({ searchParams }: Props) {
+  const typeParam = first(searchParams.type) ?? ''
+  const dateParam = first(searchParams.date) ?? ''
+  const defaultType = EVENT_TYPES.includes(typeParam) ? typeParam : ''
+  const defaultDate = /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : ''
+
+  // Le numéro n'est affiché que s'il a été renseigné pour de bon (pas le « 05 XX XX XX XX » par défaut).
+  const phoneOk = !/x/i.test(SITE.phone)
+
+  const infos: [string, string][] = [
+    ['Adresse', `${SITE.address}\nAccessible depuis Tulle, Brive, Ussel`],
+    ...(phoneOk ? ([['Téléphone', `${SITE.phone}\nLun–Sam · 9h–19h`]] as [string, string][]) : []),
+    ['E-mail', SITE.email],
+    ['Réponse', 'Sous 24 heures ouvrées'],
+    ['Visites', 'Sur rendez-vous · 7j/7\nGratuit et sans engagement'],
+  ]
+
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-cream pt-[120px] pb-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="ornament mb-8">✦</div>
-          <h1 className="font-serif font-light mb-4" style={{ fontSize: 'clamp(36px,5vw,64px)' }}>
-            Faire une<br /><em>demande</em>
-          </h1>
-          <p className="font-sans font-light text-mid text-sm leading-[1.85] max-w-md mx-auto">
-            Complétez le formulaire et un membre de notre équipe reviendra vers vous sous 24 heures ouvrées avec les disponibilités et un devis personnalisé.
-          </p>
-        </div>
+    <div className="dc">
+      <section className="page-head wrap">
+        <div className="eyebrow">Disponibilités &amp; devis</div>
+        <h1>Faire une <em>demande</em></h1>
+        <p className="lead">
+          Complétez le formulaire : un membre de notre équipe revient vers vous sous 24 heures ouvrées avec les disponibilités et un devis personnalisé.
+        </p>
       </section>
 
-      <DisposBand />
+      <div className="wrap contact-grid">
+        <div className="form-card">
+          <h2>Votre demande</h2>
+          <p className="muted" style={{ marginBottom: 26 }}>Réponse garantie sous 24h ouvrées · Sans engagement</p>
+          <ContactForm defaultType={defaultType} defaultDate={defaultDate} />
+        </div>
 
-      {/* Main */}
-      <section className="py-16 px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-16 items-start">
-
-          {/* Form */}
-          <div>
-            <h2 className="font-serif font-light text-3xl mb-1">Votre demande</h2>
-            <div className="flex items-center gap-3 font-sans text-[10px] font-medium tracking-[0.18em] uppercase text-mid mb-10">
-              <span className="block w-5 h-px bg-gold" />Réponse garantie sous 24h ouvrées
-            </div>
-            <Suspense fallback={<div className="h-96 bg-cream animate-pulse" />}>
-              <ContactForm />
-            </Suspense>
+        <aside className="aside">
+          <div className="aside-img">
+            <Image src="/images/grande-salle.jpg" alt="Le Domaine la Dame de Cœur" fill sizes="(max-width: 900px) 100vw, 380px" />
           </div>
-
-          {/* Sidebar */}
-          <div className="lg:sticky lg:top-24">
-            <div className="relative h-48 overflow-hidden mb-8">
-              <Image src="/images/grande-salle.jpg" alt="Domaine la Dame de Cœur" fill className="object-cover" />
-            </div>
-
-            <h3 className="font-serif font-light text-xl mb-6">{SITE.name}</h3>
-
-            {[
-              ['Adresse',  `${SITE.address}\nAccessible depuis Tulle, Brive, Ussel`],
-              ['Téléphone', `${SITE.phone}\nLun–Sam · 9h–19h`],
-              ['Email',     SITE.email],
-              ['Réponse',   'Sous 24 heures ouvrées'],
-              ['Visites',   'Sur rendez-vous · 7j/7\nGratuit et sans engagement'],
-            ].map(([k, v]) => (
-              <div key={k} className="border-b border-border pb-4 mb-4 last:border-b-0">
-                <p className="font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-gold mb-1">{k}</p>
-                <p className="font-sans font-light text-sm text-charcoal whitespace-pre-line leading-relaxed">{v}</p>
+          <h3>{SITE.name}</h3>
+          <div>
+            {infos.map(([k, v]) => (
+              <div className="info-row" key={k}>
+                <b>{k}</b>
+                <span>{v}</span>
               </div>
             ))}
-
-            {/* Mini dispo */}
-            <div className="bg-charcoal p-5 mt-6">
-              <p className="font-sans text-[10px] font-medium tracking-[0.15em] uppercase text-gold mb-4">Disponibilités</p>
-              <div className="flex flex-wrap gap-2">
-                {DISPONIBILITES.map(({ date, libre }) => (
-                  <span key={date} className={`font-sans text-[10px] font-light px-3 py-1.5 border ${
-                    libre ? 'border-white/40 text-white/70' : 'border-white/10 text-white/20 line-through'
-                  }`}>
-                    {date}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Témo */}
-            <div className="border-t border-border pt-6 mt-6">
-              <div className="text-gold text-sm tracking-[3px] mb-3">★★★★★</div>
-              <blockquote className="font-serif font-light italic text-base leading-relaxed text-charcoal mb-3">
-                &ldquo;Réponse rapide, équipe disponible, devis clair. On a visité le Domaine le week-end et signé 3 jours après.&rdquo;
-              </blockquote>
-              <cite className="not-italic font-sans text-[10px] font-medium tracking-[0.15em] uppercase text-gold">Céline M. · Mariage 2024</cite>
-            </div>
           </div>
-        </div>
-      </section>
-    </>
+          <div className="aside-quote">
+            <div style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: 13 }} aria-hidden="true">★★★★★</div>
+            <blockquote>« Réponse rapide, équipe disponible, devis clair. On a visité le Domaine le week-end et signé 3 jours après. »</blockquote>
+            <cite>Céline M. · Mariage 2024</cite>
+          </div>
+        </aside>
+      </div>
+    </div>
   )
 }
 

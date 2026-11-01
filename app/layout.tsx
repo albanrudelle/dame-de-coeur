@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: SITE.name,
-    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: SITE.name }],
+    images: [{ url: '/images/hero.jpg', alt: SITE.name }],
   },
   robots: { index: true, follow: true },
 }
@@ -37,8 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body className="flex flex-col min-h-screen">
+        <a href="#contenu" className="skip-link">Aller au contenu</a>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="contenu" className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
