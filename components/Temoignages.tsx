@@ -1,8 +1,9 @@
-import { TEMOIGNAGES } from '@/lib/constants'
+import { getSettings, getTemoignages } from '@/lib/content'
 
-export function Temoignages({ featured = 0 }: { featured?: number }) {
-  const feat = TEMOIGNAGES[featured] ?? TEMOIGNAGES[0]
-  const others = TEMOIGNAGES.filter(t => t !== feat).slice(0, 3)
+export async function Temoignages({ featured = 0 }: { featured?: number }) {
+  const [list, { stats }] = await Promise.all([getTemoignages(), getSettings()])
+  const feat = list[featured] ?? list[0]
+  const others = list.filter(t => t !== feat).slice(0, 3)
 
   return (
     <section className="testimonial section-tone">
@@ -22,7 +23,7 @@ export function Temoignages({ featured = 0 }: { featured?: number }) {
         </div>
 
         <div className="t-meta">
-          <b>87</b> avis vérifiés · Moyenne <b>4.9</b>/5 sur Google
+          <b>{stats.avis}</b> avis vérifiés · Moyenne <b>{stats.note}</b>/5 sur Google
         </div>
       </div>
     </section>

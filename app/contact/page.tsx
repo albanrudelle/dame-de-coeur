@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import { SITE, EVENT_TYPES } from '@/lib/constants'
+import { formatJour, getDisponibilites, getSettings, getTemoignages } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Faire une demande — Disponibilités & devis',
@@ -14,19 +15,22 @@ function first(v: string | string[] | undefined) {
   return Array.isArray(v) ? v[0] : v
 }
 
-export default function ContactPage({ searchParams }: Props) {
+export default async function ContactPage({ searchParams }: Props) {
   const typeParam = first(searchParams.type) ?? ''
   const dateParam = first(searchParams.date) ?? ''
   const defaultType = EVENT_TYPES.includes(typeParam) ? typeParam : ''
   const defaultDate = /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : ''
 
-  // Le numéro n'est affiché que s'il a été renseigné pour de bon (pas le « 05 XX XX XX XX » par défaut).
-  const phoneOk = !/x/i.test(SITE.phone)
+  const [s, dispos, temoignages] = await Promise.all([getSettings(), getDisponibilites(), getTemoignages()])
+  const t = temoignages[0]
+  // Le numéro n'est affiché que s'il a été renseigné pour de bon.
+  const phoneOk = s.phoneOk
 
   const infos: [string, string][] = [
-    ['Adresse', `${SITE.address}\nAccessible depuis Tulle, Brive, Ussel`],
-    ...(phoneOk ? ([['Téléphone', `${SITE.phone}\nLun–Sam · 9h–19h`]] as [string, string][]) : []),
-    ['E-mail', SITE.email],
+    ['Adresse', `${s.address}\nAccessible depuis Tulle, Brive, Ussel`],
+    ...(phoneOk ? ([['Téléphone', `${s.phone}\n${s.horaires}`]] as [string, string][]) : []),
+    ['E-mail', s.email],
+    ...(dispos.length ? ([['Prochaines dates libres', dispos.slice(0, 6).map(formatJour).join('\n')]] as [string, string][]) : []),
     ['Réponse', 'Sous 24 heures ouvrées'],
     ['Visites', 'Sur rendez-vous · 7j/7\nGratuit et sans engagement'],
   ]
@@ -63,8 +67,8 @@ export default function ContactPage({ searchParams }: Props) {
           </div>
           <div className="aside-quote">
             <div style={{ color: 'var(--gold)', letterSpacing: '.25em', fontSize: 13 }} aria-hidden="true">★★★★★</div>
-            <blockquote>« Réponse rapide, équipe disponible, devis clair. On a visité le Domaine le week-end et signé 3 jours après. »</blockquote>
-            <cite>Céline M. · Mariage 2024</cite>
+            <blockquote>« {t.quote} »</blockquote>
+            <cite>{t.author}{t.event ? ` · ${t.event}` : ''}</cite>
           </div>
         </aside>
       </div>

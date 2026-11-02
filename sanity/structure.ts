@@ -1,7 +1,15 @@
 import type {StructureResolver} from 'sanity/structure'
 
-// https://www.sanity.io/docs/structure-builder-cheat-sheet
+// Le menu du studio : réglages en premier, puis les listes de contenu.
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Content')
-    .items(S.documentTypeListItems())
+    .title('Contenu du site')
+    .items([
+      S.listItem()
+        .title('Réglages du site')
+        .id('reglages')
+        .child(S.document().schemaType('reglages').documentId('reglages')),
+      S.divider(),
+      S.documentTypeListItem('temoignage').title('Témoignages'),
+      S.documentTypeListItem('disponibilite').title('Disponibilités'),
+    ])

@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { SITE } from '@/lib/constants'
+import { getSettings } from '@/lib/content'
 
-const SCHEMA = {
+const schema = (s: Awaited<ReturnType<typeof getSettings>>) => ({
   '@context': 'https://schema.org',
   '@type': 'EventVenue',
   name: SITE.name,
   description: 'Grande salle de réception, discothèque privée et bar lounge à Ménoire, Corrèze.',
   address: { '@type': 'PostalAddress', addressLocality: 'Ménoire', postalCode: '19190', addressCountry: 'FR' },
-  telephone: SITE.phone,
-  email: SITE.email,
-  maximumAttendeeCapacity: 150,
-}
+  ...(s.phoneOk ? { telephone: s.phone } : {}),
+  email: s.email,
+  maximumAttendeeCapacity: Number(s.stats.capacite) || 150,
+})
 
 const EVENEMENTS: [string, string][] = [
   ['Mariages', '/mariages'],
@@ -27,11 +28,12 @@ const DOMAINE: [string, string][] = [
   ['Mentions légales', '/mentions-legales'],
 ]
 
-export function Footer() {
+export async function Footer() {
+  const s = await getSettings()
   return (
     <div className="dc">
       <footer className="footer">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(s)) }} />
         <div className="wrap">
           <div className="footer-top">
             <div>
@@ -61,7 +63,7 @@ export function Footer() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} {SITE.name} · {SITE.address}</span>
+            <span>© {new Date().getFullYear()} {SITE.name} · {s.address}</span>
             <span>Visites sur rendez-vous, 7j/7</span>
           </div>
         </div>

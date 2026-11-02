@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Configurator } from '@/components/home/Configurator'
 import { Temoignages } from '@/components/Temoignages'
 import { ESPACES } from '@/lib/constants'
+import { getSettings } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Domaine la Dame de Cœur — Salle de réception & discothèque en Corrèze',
@@ -26,7 +27,10 @@ const GALERIE = [
 
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
 
-export default function HomePage() {
+export default async function HomePage() {
+  const s = await getSettings()
+  const h = s.hero
+  const galerie = [...s.galerie, ...GALERIE.slice(s.galerie.length)].slice(0, 5)
   return (
     <div className="dc">
       {/* HERO */}
@@ -34,22 +38,22 @@ export default function HomePage() {
         <div className="hero-wrap">
           <div className="hero-copy">
             <div className="eyebrow">Un lieu d&apos;exception pour vos plus beaux moments</div>
-            <h1>Un écrin au cœur<br /><em>de la Corrèze.</em></h1>
+            <h1>{h.titreHaut ?? 'Un écrin au cœur'}<br /><em>{h.titreItalique ?? 'de la Corrèze.'}</em></h1>
             <p className="lead">
-              Grande salle aux lustres en cristal, discothèque privée à piste LED encastrée et bar lounge : tout ce qu&apos;il faut pour une célébration inoubliable, au même endroit.
+              {h.texte ?? "Grande salle aux lustres en cristal, discothèque privée à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
             </p>
             <div className="hero-actions">
               <Link className="button" href="/espaces">Découvrir nos espaces <span aria-hidden="true">↗</span></Link>
               <a className="button button-outline" href="#configurateur">Vérifier une date</a>
             </div>
             <div className="hero-meta">
-              <div><strong>150</strong> convives maximum</div>
-              <div><strong>+200</strong> événements réussis</div>
-              <div><strong>4.9 ★</strong> note Google</div>
+              <div><strong>{s.stats.capacite}</strong> convives maximum</div>
+              <div><strong>{s.stats.evenements}</strong> événements réussis</div>
+              <div><strong>{s.stats.note} ★</strong> note Google</div>
             </div>
           </div>
           <div className="hero-image">
-            <Image src="/images/hero.jpg" alt="Domaine la Dame de Cœur — Ménoire, Corrèze" fill priority sizes="(max-width: 680px) 100vw, 60vw" />
+            <Image src={h.image ?? '/images/hero.jpg'} alt={h.alt ?? 'Domaine la Dame de Cœur — Ménoire, Corrèze'} fill priority sizes="(max-width: 680px) 100vw, 60vw" />
             <div className="image-note">Ménoire · Corrèze</div>
           </div>
         </div>
@@ -133,7 +137,7 @@ export default function HomePage() {
           <p className="lead">Une salle dressée, un toast partagé, les lumières qui s&apos;allument. Projetez-vous dans votre prochaine célébration.</p>
         </div>
         <div className="gallery">
-          {GALERIE.map(g => (
+          {galerie.map(g => (
             <div key={g.src}>
               <Image src={g.src} alt={g.alt} fill sizes="(max-width: 680px) 50vw, 33vw" />
             </div>
