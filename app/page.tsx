@@ -3,8 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Configurator } from '@/components/home/Configurator'
 import { Temoignages } from '@/components/Temoignages'
-import { ESPACES } from '@/lib/constants'
-import { getSettings } from '@/lib/content'
+import { getEspaces, getSettings } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Domaine la Dame de Cœur — Salle de réception & discothèque en Corrèze',
@@ -28,7 +27,7 @@ const GALERIE = [
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
 
 export default async function HomePage() {
-  const s = await getSettings()
+  const [s, ESPACES] = await Promise.all([getSettings(), getEspaces()])
   const h = s.hero
   const galerie = [...s.galerie, ...GALERIE.slice(s.galerie.length)].slice(0, 5)
   return (

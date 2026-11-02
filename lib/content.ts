@@ -1,5 +1,5 @@
 import { createClient } from 'next-sanity'
-import { SITE, TEMOIGNAGES } from '@/lib/constants'
+import { ESPACES, SITE, TEMOIGNAGES } from '@/lib/constants'
 import { urlFor } from '@/sanity/lib/image'
 
 // Contenu éditable depuis le studio (/studio). Si Sanity est vide ou injoignable,
@@ -99,4 +99,80 @@ export function formatJour(iso: string) {
   return new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
+}
+
+// ── Pages, espaces, événements ──────────────────────────────────────────────
+
+type RawPage = {
+  titreHaut?: string; titreItalique?: string; intro?: string; image?: SanityImg
+  ctaTitre?: string; ctaTexte?: string
+  inclus?: string[]; prix?: string; texteDomaine?: string; imageDomaine?: SanityImg
+}
+
+export async function getPage(id: 'pageMariages' | 'pageSoirees' | 'pageEspaces') {
+  const p = (await safeFetch<RawPage>(`*[_id == "${id}"][0]`)) ?? {}
+  const list = (p.inclus ?? []).map(x => x?.trim()).filter(Boolean)
+  return {
+    titreHaut: clean(p.titreHaut),
+    titreItalique: clean(p.titreItalique),
+    intro: clean(p.intro),
+    image: img(p.image, 1600),
+    alt: clean(p.image?.alt),
+    ctaTitre: clean(p.ctaTitre),
+    ctaTexte: clean(p.ctaTexte),
+    inclus: list.length ? list : undefined,
+    prix: clean(p.prix),
+    texteDomaine: clean(p.texteDomaine),
+    imageDomaine: img(p.imageDomaine, 1400),
+    altDomaine: clean(p.imageDomaine?.alt),
+  }
+}
+
+const strs = (a?: string[]) => {
+  const l = (a ?? []).map(x => x?.trim()).filter(Boolean)
+  return l.length ? l : undefined
+}
+
+export async function getPrix() {
+  const p = await getPage('pageMariages')
+  return p.prix ?? '1 800 € à 3 500 €'
+}
+
+type RawEspace = {
+  slug?: string; titre?: string; cap?: string; desc?: string
+  detail?: string[]; ideal?: string[]; tags?: string[]; image?: SanityImg
+}
+
+export async function getEspaces() {
+  const rows = (await safeFetch<RawEspace[]>(`*[_type == "espace"]`)) ?? []
+  return ESPACES.map(e => {
+    const r = rows.find(x => x.slug === e.slug)
+    if (!r) return e
+    return {
+      ...e,
+      titre: clean(r.titre) ?? e.titre,
+      cap: clean(r.cap) ?? e.cap,
+      desc: clean(r.desc) ?? e.desc,
+      detail: strs(r.detail) ?? e.detail,
+      ideal: strs(r.ideal) ?? e.ideal,
+      tags: strs(r.tags) ?? e.tags,
+      img: img(r.image, 1400) ?? e.img,
+    }
+  })
+}
+
+type RawEvent = { label?: string; titre?: string; desc?: string; tags?: string[]; type?: string; image?: SanityImg }
+
+export async function getEvenements(fallback: { img: string; type: string; label: string; titre: string; desc: string; tags: string[] }[]) {
+  const rows = await safeFetch<RawEvent[]>(`*[_type == "evenement"] | order(ordre asc, _createdAt asc)`)
+  const list = (rows ?? []).filter(r => r.label)
+  if (!list.length) return fallback.map(f => ({ ...f, img: `/images/${f.img}.jpg` }))
+  return list.map(r => ({
+    img: img(r.image, 1200) ?? '/images/piste4.jpg',
+    type: r.type ?? 'Autre',
+    label: r.label as string,
+    titre: r.titre ?? '',
+    desc: r.desc ?? '',
+    tags: strs(r.tags) ?? [],
+  }))
 }

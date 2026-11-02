@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { PageHero } from '@/components/dc/PageHero'
 import { CtaBand } from '@/components/dc/CtaBand'
 import { Temoignages } from '@/components/Temoignages'
+import { getEvenements, getPage } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Anniversaires, EVJF, EVG & soirées en Corrèze',
@@ -18,15 +19,17 @@ const EVENTS = [
   { img: 'piste3',       type: 'Réveillon / Soirée thème', label: 'Réveillons & Soirées thème', titre: 'Noël · Saint-Valentin · Années 80…',    desc: "La discothèque se transforme entièrement selon votre univers. Chaque thème réinvente l'espace pour une soirée hors du commun.", tags: ['Décoration immersive', 'Piste LED'] },
 ]
 
-export default function SoireesPage() {
+export default async function SoireesPage() {
+  const p = await getPage('pageSoirees')
+  const events = await getEvenements(EVENTS)
   return (
     <div className="dc">
       <PageHero
         eyebrow="Soirées & Événements"
-        title={<>Des moments<br /><em>qui se racontent.</em></>}
-        lead="Anniversaires, enterrements de vie, séminaires, réveillons : chaque événement devient une expérience à part entière."
-        img="/images/piste3.jpg"
-        alt="Soirée dans la discothèque du Domaine la Dame de Cœur"
+        title={<>{p.titreHaut ?? 'Des moments'}<br /><em>{p.titreItalique ?? 'qui se racontent.'}</em></>}
+        lead={p.intro ?? 'Anniversaires, enterrements de vie, séminaires, réveillons : chaque événement devient une expérience à part entière.'}
+        img={p.image ?? '/images/piste3.jpg'}
+        alt={p.alt ?? 'Soirée dans la discothèque du Domaine la Dame de Cœur'}
         note="Piste LED · Régie lumière"
       >
         <div className="hero-actions">
@@ -43,10 +46,10 @@ export default function SoireesPage() {
           <p className="lead">Choisissez l&apos;ambiance : la discothèque pour faire la fête, la petite salle pour l&apos;intime, la grande salle pour réunir tout le monde.</p>
         </div>
         <div className="event-grid">
-          {EVENTS.map(ev => (
+          {events.map(ev => (
             <article className="event-card" key={ev.label}>
               <div className="event-media">
-                <Image src={`/images/${ev.img}.jpg`} alt={ev.label} fill sizes="(max-width: 900px) 100vw, 50vw" />
+                <Image src={ev.img} alt={ev.label} fill sizes="(max-width: 900px) 100vw, 50vw" />
               </div>
               <div className="event-body">
                 <div className="eyebrow">{ev.label}</div>
@@ -68,8 +71,8 @@ export default function SoireesPage() {
 
       <CtaBand
         eyebrow="Chaque événement mérite un écrin"
-        title="Parlons de votre soirée."
-        text="Contactez-nous pour vérifier les disponibilités et recevoir un devis sous 24h."
+        title={p.ctaTitre ?? 'Parlons de votre soirée.'}
+        text={p.ctaTexte ?? 'Contactez-nous pour vérifier les disponibilités et recevoir un devis sous 24h.'}
         label="Faire une demande"
       />
     </div>

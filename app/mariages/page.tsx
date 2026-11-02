@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { PageHero } from '@/components/dc/PageHero'
 import { CtaBand } from '@/components/dc/CtaBand'
 import { Temoignages } from '@/components/Temoignages'
+import { getPage, getPrix } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Salle de mariage en Corrèze — Ménoire',
@@ -35,15 +36,18 @@ const GALERIE = [
   { img: 'table3',       alt: 'Détail de décoration' },
 ]
 
-export default function MariagesPage() {
+export default async function MariagesPage() {
+  const p = await getPage('pageMariages')
+  const prix = await getPrix()
+  const inclus = p.inclus ?? INCLUS
   return (
     <div className="dc">
       <PageHero
         eyebrow="Mariages"
-        title={<>Le lieu parfait,<br /><em>pour un jour parfait.</em></>}
-        lead="Célébrez votre mariage dans un écrin d'élégance au cœur de la Corrèze. Du vin d'honneur jusqu'au dernier slow, le Domaine orchestre chaque moment de votre journée."
-        img="/images/salle-table.jpg"
-        alt="Mariage au Domaine la Dame de Cœur"
+        title={<>{p.titreHaut ?? 'Le lieu parfait,'}<br /><em>{p.titreItalique ?? 'pour un jour parfait.'}</em></>}
+        lead={p.intro ?? "Célébrez votre mariage dans un écrin d'élégance au cœur de la Corrèze. Du vin d'honneur jusqu'au dernier slow, le Domaine orchestre chaque moment de votre journée."}
+        img={p.image ?? '/images/salle-table.jpg'}
+        alt={p.alt ?? 'Mariage au Domaine la Dame de Cœur'}
         note="Ménoire · Corrèze"
       >
         <div className="hero-actions">
@@ -73,11 +77,11 @@ export default function MariagesPage() {
             <div className="panel">
               <h3>Formule complète : tout est inclus</h3>
               <ul className="check-list">
-                {INCLUS.map(item => <li key={item}>{item}</li>)}
+                {inclus.map(item => <li key={item}>{item}</li>)}
               </ul>
             </div>
             <div className="price-note">
-              Formule complète : de <strong>1 800 € à 3 500 €</strong> selon la date et les options. Devis personnalisé sous 24h.
+              Formule complète : de <strong>{prix}</strong> selon la date et les options. Devis personnalisé sous 24h.
             </div>
           </div>
         </div>
@@ -110,8 +114,8 @@ export default function MariagesPage() {
 
       <CtaBand
         eyebrow="Votre date est peut-être encore disponible"
-        title="Vérifions ensemble votre date."
-        text="Les samedis de juin à octobre sont les premiers réservés. Aucun engagement, réponse sous 24h."
+        title={p.ctaTitre ?? 'Vérifions ensemble votre date.'}
+        text={p.ctaTexte ?? 'Les samedis de juin à octobre sont les premiers réservés. Aucun engagement, réponse sous 24h.'}
         label="Vérifier les disponibilités"
       />
     </div>
