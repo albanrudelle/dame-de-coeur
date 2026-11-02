@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const EVENTS = [
   { img: 'piste4',       type: 'Anniversaire',             label: 'Anniversaires',              titre: '30 · 40 · 50 · 60 ans',                 desc: "Grande salle jusqu'à 150 personnes ou petite salle pour les célébrations plus intimes. Décoration thématique disponible pour un cadre mémorable.", tags: ["Jusqu'à 150 personnes", 'Décoration thème', 'Bar inclus'] },
   { img: 'petite-salle', type: 'EVJF / EVG',               label: 'EVJF & EVG',                 titre: 'La nuit avant le grand jour',           desc: "La petite salle avec son bar miroir design, l'ambiance lounge et les éclairages tamisés est pensée pour les soirées les plus intimes et les plus festives.", tags: ["Jusqu'à 50 personnes", 'Bar miroir', 'Personnalisation totale'] },
-  { img: 'piste-bar',    type: 'Séminaire',                label: 'Entreprise & Séminaire',     titre: "Journée de travail, dîner d'équipe",    desc: "Petite salle pour les ateliers, grande salle pour le repas. Les deux espaces s'enchaînent naturellement. Équipement audiovisuel disponible.", tags: ['2 espaces combinables', 'Parking aisé'] },
+  { img: 'reception',    type: 'Séminaire',                label: 'Entreprise & Séminaire',     titre: "Journée de travail, dîner d'équipe",    desc: "Petite salle pour les ateliers, grande salle pour le repas. Les deux espaces s'enchaînent naturellement. Équipement audiovisuel disponible.", tags: ['2 espaces combinables', 'Parking aisé'] },
   { img: 'piste3',       type: 'Réveillon / Soirée thème', label: 'Réveillons & Soirées thème', titre: 'Noël · Saint-Valentin · Années 80…',    desc: "La discothèque se transforme entièrement selon votre univers. Chaque thème réinvente l'espace pour une soirée hors du commun.", tags: ['Décoration immersive', 'Piste LED'] },
 ]
 
@@ -28,7 +28,7 @@ export default async function SoireesPage() {
         eyebrow="Soirées & Événements"
         title={<>{p.titreHaut ?? 'Des moments'}<br /><em>{p.titreItalique ?? 'qui se racontent.'}</em></>}
         lead={p.intro ?? 'Anniversaires, enterrements de vie, séminaires, réveillons : chaque événement devient une expérience à part entière.'}
-        img={p.image ?? '/images/piste3.jpg'}
+        img={p.image ?? '/images/piste2.jpg'}
         alt={p.alt ?? 'Soirée dans la discothèque du Domaine la Dame de Cœur'}
         note="Piste LED · Régie lumière"
       >

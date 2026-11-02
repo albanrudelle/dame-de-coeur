@@ -17,7 +17,7 @@ export default async function EspacesPage() {
         eyebrow="Les espaces"
         title={<>{p.titreHaut ?? 'Trois univers,'}<br /><em>{p.titreItalique ?? 'une soirée complète.'}</em></>}
         lead={p.intro ?? "Chaque espace peut être loué séparément ou combiné pour une expérience complète, du vin d'honneur au dernier slow."}
-        img={p.image ?? '/images/grande-salle.jpg'}
+        img={p.image ?? '/images/hero.jpg'}
         alt={p.alt ?? 'La grande salle du Domaine la Dame de Cœur'}
         note="3 espaces · 150 convives maximum"
       />

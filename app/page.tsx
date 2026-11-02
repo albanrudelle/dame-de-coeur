@@ -3,10 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Configurator } from '@/components/home/Configurator'
 import { Temoignages } from '@/components/Temoignages'
-import { getEspaces, getSettings } from '@/lib/content'
+import { getEspaces, getPrix, getSettings } from '@/lib/content'
+import { Faq } from '@/components/dc/Faq'
+import { HowItWorks } from '@/components/dc/HowItWorks'
 
 export const metadata: Metadata = {
-  title: 'Domaine la Dame de Cœur — Salle de réception & discothèque en Corrèze',
+  title: { absolute: 'Domaine la Dame de Cœur | Salle de réception & discothèque en Corrèze' },
 }
 
 const INCLUS = [
@@ -27,7 +29,7 @@ const GALERIE = [
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
 
 export default async function HomePage() {
-  const [s, ESPACES] = await Promise.all([getSettings(), getEspaces()])
+  const [s, ESPACES, prix] = await Promise.all([getSettings(), getEspaces(), getPrix()])
   const h = s.hero
   const galerie = [...s.galerie, ...GALERIE.slice(s.galerie.length)].slice(0, 5)
   return (
@@ -52,7 +54,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="hero-image">
-            <Image src={h.image ?? '/images/hero.jpg'} alt={h.alt ?? 'Domaine la Dame de Cœur — Ménoire, Corrèze'} fill priority sizes="(max-width: 680px) 100vw, 60vw" />
+            <Image src={h.image ?? '/images/hero.jpg'} alt={h.alt ?? 'Domaine la Dame de Cœur, Ménoire, Corrèze'} fill priority sizes="(max-width: 680px) 100vw, 60vw" />
             <div className="image-note">Ménoire · Corrèze</div>
           </div>
         </div>
@@ -96,7 +98,7 @@ export default async function HomePage() {
       <section className="section section-tone">
         <div className="wrap combo">
           <div className="combo-visual">
-            <Image src="/images/piste-bar.jpg" alt="Piste de danse et bar de la discothèque" width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
+            <Image src="/images/piste2.jpg" alt="Piste de danse et bar de la discothèque" width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
             <div className="plan-caption"><span>La piste et le bar de la discothèque</span><span>Tout est déjà en place</span></div>
           </div>
           <div>
@@ -106,10 +108,13 @@ export default async function HomePage() {
             <ul className="check-list">
               {INCLUS.map(l => <li key={l}>{l}</li>)}
             </ul>
-            <a href="#configurateur" className="button">Vérifier ma date ↗</a>
+            <div className="price-teaser">Formule complète à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
+            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier ma date ↗</a></p>
           </div>
         </div>
       </section>
+
+      <HowItWorks />
 
       {/* CONFIGURATEUR */}
       <section className="configurator" id="configurateur">
@@ -145,6 +150,8 @@ export default async function HomePage() {
       </section>
 
       <Temoignages />
+
+      <Faq prix={prix} />
 
       {/* CONTACT */}
       <section className="contact-band">

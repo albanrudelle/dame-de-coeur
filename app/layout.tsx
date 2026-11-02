@@ -4,6 +4,8 @@ import './dc.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { SITE } from '@/lib/constants'
+import { StickyCta } from '@/components/StickyCta'
+import { getSettings } from '@/lib/content'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -28,7 +30,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const s = await getSettings()
+  const phone = s.phoneOk ? s.phone : undefined
   return (
     <html lang="fr">
       <head>
@@ -38,9 +42,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="flex flex-col min-h-screen">
         <a href="#contenu" className="skip-link">Aller au contenu</a>
-        <Navbar />
+        <Navbar phone={phone} />
         <main id="contenu" className="flex-1">{children}</main>
         <Footer />
+        <StickyCta phone={phone} />
       </body>
     </html>
   )

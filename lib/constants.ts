@@ -32,7 +32,7 @@ export const TEMOIGNAGES = [
   {
     stars: 5,
     quote: "Séminaire + dîner d'équipe, tout était parfait. La petite salle pour les ateliers, la grande salle pour le repas. Logistique zéro stress. Le rapport qualité-prix est imbattable en Corrèze.",
-    author: 'Christine P. — DRH',
+    author: 'Christine P., DRH',
     event:  'Séminaire · 35 personnes · 2 espaces · 2023',
     platform: 'Google',
   },
@@ -52,7 +52,7 @@ export const ESPACES = [
       'Parquet chaleureux · Grandes fenêtres',
       'Climatisation · Accessible PMR',
     ],
-    ideal:  ['Mariage — repas et vin d\'honneur', 'Anniversaire 30 · 40 · 50 · 60 ans', 'Communion · Baptême · Repas de famille', 'Séminaire · Repas d\'entreprise', 'Réveillon · Soirée de gala'],
+    ideal:  ['Mariage : repas et vin d\'honneur', 'Anniversaire 30 · 40 · 50 · 60 ans', 'Communion · Baptême · Repas de famille', 'Séminaire · Repas d\'entreprise', 'Réveillon · Soirée de gala'],
     tags:   ['150 convives', 'Banquet · Cocktail', 'Climatisée', 'PMR'],
     img:    '/images/grande-salle.jpg',
   },
@@ -60,7 +60,7 @@ export const ESPACES = [
     num:    '02',
     slug:   'discotheque',
     titre:  'Discothèque privée',
-    cap:    'Piste LED encastrée — unique en Corrèze',
+    cap:    'Piste LED encastrée, unique en Corrèze',
     desc:   'Une discothèque privée dotée d\'une piste de danse avec LEDs encastrées dans le sol. Rare en location privée. Régie lumière complète, canapés lounge, bar panoramique sur mezzanine.',
     detail: [
       'Piste LED encastrée dans le sol',

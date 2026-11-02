@@ -5,6 +5,7 @@ import { PageHero } from '@/components/dc/PageHero'
 import { CtaBand } from '@/components/dc/CtaBand'
 import { Temoignages } from '@/components/Temoignages'
 import { getPage, getPrix } from '@/lib/content'
+import { Faq } from '@/components/dc/Faq'
 
 export const metadata: Metadata = {
   title: 'Salle de mariage en Corrèze — Ménoire',
@@ -88,17 +89,8 @@ export default async function MariagesPage() {
       </section>
 
       <div className="photo-band">
-        <Image src="/images/range-table.jpg" alt="Salle de mariage mise en place" fill sizes="100vw" />
+        <Image src="/images/reception.jpg" alt="Salle de réception dressée pour un mariage" fill sizes="100vw" />
       </div>
-
-      {/* Témoignage mariage */}
-      <section className="testimonial">
-        <div className="wrap">
-          <div className="eyebrow" style={{ justifyContent: 'center' }}>Un mariage au Domaine</div>
-          <p className="quote">« On a fait le repas dans la grande salle et l&apos;after dans la discothèque. Nos invités ont adoré, sans jamais avoir à prendre leur voiture. La piste LED a été le moment préféré de tout le monde. »</p>
-          <div className="quote-by">Marine &amp; Julien · Mariage · 140 personnes · Formule complète · 2024</div>
-        </div>
-      </section>
 
       <section className="section wrap" style={{ paddingTop: 0 }}>
         <div className="strip">
@@ -111,6 +103,8 @@ export default async function MariagesPage() {
       </section>
 
       <Temoignages featured={0} />
+
+      <Faq prix={prix} />
 
       <CtaBand
         eyebrow="Votre date est peut-être encore disponible"
