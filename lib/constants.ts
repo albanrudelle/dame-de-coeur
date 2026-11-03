@@ -3,8 +3,8 @@ export const SITE = {
   location: 'Ménoire · Corrèze',
   address:  'Ménoire, 19190 Corrèze',
   phone:    '05 XX XX XX XX',
-  email:    'contact@domaine-dame-de-coeur.fr',
-  url:      process.env.NEXT_PUBLIC_SITE_URL ?? 'https://domaine-dame-de-coeur.fr',
+  email:    'domaineladamedecoeur@gmail.com',
+  url:      process.env.NEXT_PUBLIC_SITE_URL ?? 'https://domaineladamedecoeur.fr',
 }
 
 export const TEMOIGNAGES = [

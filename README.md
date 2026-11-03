@@ -65,7 +65,7 @@ npm install resend
 ```
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxx
-CONTACT_EMAIL=contact@domaine-dame-de-coeur.fr
+CONTACT_EMAIL=domaineladamedecoeur@gmail.com
 ```
 
 ### Option B — SMTP (Nodemailer)
@@ -77,7 +77,7 @@ SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=you@example.com
 SMTP_PASS=yourpassword
-CONTACT_EMAIL=contact@domaine-dame-de-coeur.fr
+CONTACT_EMAIL=domaineladamedecoeur@gmail.com
 ```
 
 ## Checklist avant mise en production
