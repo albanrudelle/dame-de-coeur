@@ -17,7 +17,7 @@ export const TEMOIGNAGES = [
   },
   {
     stars: 5,
-    quote: "La piste LED dans le sol, les lasers, les canapés rouges… c'était une vraie boîte de nuit privée. Toutes nos photos de nuit sont incroyables. Un lieu comme on n'en trouve pas en Corrèze.",
+    quote: "La piste LED dans le sol, les lasers, les canapés rouges… c'était une soirée dansante rien que pour nous. Toutes nos photos de nuit sont incroyables. Un lieu comme on n'en trouve pas en Corrèze.",
     author: 'Laëtitia & Damien',
     event:  'Mariage · Tous les espaces · 2024',
     platform: 'Mariages.net',
