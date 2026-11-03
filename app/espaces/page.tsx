@@ -5,8 +5,8 @@ import { PageHero } from '@/components/dc/PageHero'
 import { getEspaces, getPage, getPrix } from '@/lib/content'
 
 export const metadata: Metadata = {
-  title: 'Nos espaces — Grande salle, discothèque & bar lounge en Corrèze',
-  description: "Découvrez les 3 espaces du Domaine la Dame de Cœur : grande salle (150 convives), discothèque privée avec piste LED, petite salle & bar lounge. Ménoire, Corrèze.",
+  title: 'Nos espaces | Grande salle, espace festif & bar lounge en Corrèze',
+  description: "Découvrez les 3 espaces du Domaine la Dame de Cœur : grande salle (150 convives), espace festif avec piste LED, petite salle & bar lounge. Ménoire, Corrèze.",
 }
 
 export default async function EspacesPage() {
@@ -16,7 +16,7 @@ export default async function EspacesPage() {
       <PageHero
         eyebrow="Les espaces"
         title={<>{p.titreHaut ?? 'Trois univers,'}<br /><em>{p.titreItalique ?? 'une soirée complète.'}</em></>}
-        lead={p.intro ?? "Chaque espace peut être loué séparément ou combiné pour une expérience complète, du vin d'honneur au dernier slow."}
+        lead={p.intro ?? "Trois espaces complémentaires, réunis pour une soirée complète : du vin d'honneur au dernier slow, vos invités ne quittent jamais le Domaine."}
         img={p.image ?? '/images/table-rideau.jpg'}
         alt={p.alt ?? 'La grande salle du Domaine la Dame de Cœur'}
         note="3 espaces · 150 convives maximum"
@@ -43,19 +43,19 @@ export default async function EspacesPage() {
             </div>
           </div>
           <div className="ideal">
-            <b>Idéal pour</b>
+            <b>Au fil de la soirée</b>
             {e.ideal.map(x => <span key={x}>{x}</span>)}
           </div>
         </div>
       ))}
 
       <section className="dark-band">
-        <div className="eyebrow">La formule complète</div>
-        <h2>Les trois espaces réunis<br /><em>pour votre mariage.</em></h2>
-        <p className="lead">Vin d&apos;honneur · Repas · After discothèque. Vos invités ne quittent jamais le site. La formule la plus demandée.</p>
+        <div className="eyebrow">Le Domaine en exclusivité</div>
+        <h2>Les trois espaces réunis,<br /><em>rien que pour vous.</em></h2>
+        <p className="lead">Vin d&apos;honneur · Repas · Soirée dansante. Le Domaine est privatisé dans son ensemble pour votre événement : vos invités ne quittent jamais le site.</p>
         <p className="price">Fourchette indicative : <strong>{prix}</strong></p>
         <div className="btn-row">
-          <Link className="button button-light" href="/contact">Demander un devis formule complète</Link>
+          <Link className="button button-light" href="/contact">Demander un devis</Link>
           <Link className="button button-outline-light" href="/mariages">En savoir plus sur les mariages</Link>
         </div>
       </section>

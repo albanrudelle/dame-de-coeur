@@ -146,7 +146,7 @@ type RawEspace = {
 export async function getEspaces() {
   const rows = (await safeFetch<RawEspace[]>(`*[_type == "espace"]`)) ?? []
   return ESPACES.map(e => {
-    const r = rows.find(x => x.slug === e.slug)
+    const r = rows.find(x => x.slug === e.slug || (e.slug === 'espace-festif' && x.slug === 'discotheque'))
     if (!r) return e
     return {
       ...e,

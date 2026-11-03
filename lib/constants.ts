@@ -12,14 +12,14 @@ export const TEMOIGNAGES = [
     stars: 5,
     quote: "Les lustres en cristal, la piste LED au sol… nos invités n'en revenaient pas. On avait l'impression d'être dans une salle parisienne, en pleine Corrèze, pour un tarif bien en dessous de ce qu'on imaginait.",
     author: 'Aurélie & Maxime',
-    event:  'Mariage · 127 personnes · Grande salle + discothèque · 2024',
+    event:  'Mariage · 127 personnes · Tous les espaces · 2024',
     platform: 'Google',
   },
   {
     stars: 5,
     quote: "La piste LED dans le sol, les lasers, les canapés rouges… c'était une vraie boîte de nuit privée. Toutes nos photos de nuit sont incroyables. Un lieu comme on n'en trouve pas en Corrèze.",
     author: 'Laëtitia & Damien',
-    event:  'Mariage · Formule complète · 2024',
+    event:  'Mariage · Tous les espaces · 2024',
     platform: 'Mariages.net',
   },
   {
@@ -58,10 +58,10 @@ export const ESPACES = [
   },
   {
     num:    '02',
-    slug:   'discotheque',
-    titre:  'Discothèque privée',
+    slug:   'espace-festif',
+    titre:  'Espace festif & piste LED',
     cap:    'Piste LED encastrée, unique en Corrèze',
-    desc:   'Une discothèque privée dotée d\'une piste de danse avec LEDs encastrées dans le sol. Rare en location privée. Régie lumière complète, canapés lounge, bar panoramique sur mezzanine.',
+    desc:   'Un espace festif doté d\'une piste de danse avec LEDs encastrées dans le sol. Rare en location privée. Régie lumière complète, canapés lounge, bar panoramique sur mezzanine.',
     detail: [
       'Piste LED encastrée dans le sol',
       'Régie lumière : boule · lasers · stroboscopes',
@@ -69,7 +69,7 @@ export const ESPACES = [
       'Bar panoramique sur mezzanine',
       'Écran de projection · Sono professionnelle',
     ],
-    ideal:  ['After mariage', 'Soirée privée · Anniversaire', 'EVJF · EVG nocturne', 'Soirée d\'entreprise festive', 'Réveillon thématique'],
+    ideal:  ['Soirée dansante', 'After', 'Bar et canapés lounge'],
     tags:   ['Piste LED sol', 'Régie complète', 'Bar mezzanine'],
     img:    '/images/piste4.jpg',
   },
@@ -84,9 +84,9 @@ export const ESPACES = [
       'Tireuse à bière professionnelle',
       'Éclairages d\'ambiance colorés',
       'Configuration cocktail ou dîner',
-      'Peut compléter la grande salle',
+      'Complète la grande salle et l\'espace festif',
     ],
-    ideal:  ['Vin d\'honneur de mariage', 'EVJF · EVG', 'Cocktail d\'entreprise', 'Anniversaire intime', 'Séminaire petit groupe'],
+    ideal:  ['Vin d\'honneur', 'Cocktail', 'Accueil des invités'],
     tags:   ['50 convives', 'Bar miroir', 'EVJF · EVG', 'Lounge'],
     img:    '/images/petite-salle2.jpg',
   },
@@ -103,10 +103,3 @@ export const EVENT_TYPES = [
   'Autre',
 ]
 
-export const ESPACE_OPTIONS = [
-  'Grande salle de réception',
-  'Discothèque privée',
-  'Petite salle & bar lounge',
-  'Formule complète (tous les espaces)',
-  'Je ne sais pas encore',
-]

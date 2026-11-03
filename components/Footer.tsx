@@ -6,7 +6,7 @@ const schema = (s: Awaited<ReturnType<typeof getSettings>>) => ({
   '@context': 'https://schema.org',
   '@type': 'EventVenue',
   name: SITE.name,
-  description: 'Grande salle de réception, discothèque privée et bar lounge à Ménoire, Corrèze.',
+  description: 'Grande salle de réception, espace festif à piste LED et bar lounge à Ménoire, Corrèze.',
   address: { '@type': 'PostalAddress', addressLocality: 'Ménoire', postalCode: '19190', addressCountry: 'FR' },
   ...(s.phoneOk ? { telephone: s.phone } : {}),
   email: s.email,
@@ -42,7 +42,7 @@ export async function Footer() {
                 <small>{SITE.location}</small>
               </Link>
               <p style={{ maxWidth: 300, marginTop: 18 }}>
-                Complexe événementiel à Ménoire, Corrèze. Grande salle de réception, discothèque privée et bar lounge.
+                Complexe événementiel à Ménoire, Corrèze. Grande salle de réception, espace festif à piste LED et bar lounge. Le Domaine se loue dans son ensemble.
               </p>
             </div>
             <div>

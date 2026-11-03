@@ -21,13 +21,9 @@ export function Configurator() {
   const formRef = useRef<HTMLFormElement>(null)
   const resultsRef = useRef<HTMLDivElement>(null)
 
-  const small = guests === GUESTS[0]
-  const [grande, disco, petite] = ESPACES
-  const cards = small ? [petite, disco] : [grande, disco]
-  const comboTitle = small ? 'Petite salle + discothèque' : 'Grande salle + discothèque'
-  const comboText = small
-    ? 'Le cocktail ou le dîner au bar lounge, puis la soirée sur la piste LED.'
-    : 'Le repas sous les lustres, puis la soirée sur la piste LED.'
+  const cards = ESPACES
+  const comboTitle = 'Le Domaine en exclusivité'
+  const comboText = 'Vin d\'honneur, repas puis soirée dansante : les trois espaces sont à vous, sans déplacement pour vos invités.'
   const contactHref = `/contact?type=${encodeURIComponent(eventType)}${date ? `&date=${date}` : ''}`
   const pref = choice === 'banquet' ? 'banquet assis' : choice === 'cocktail' ? 'cocktail' : 'configuration à définir'
 
@@ -87,7 +83,7 @@ export function Configurator() {
 
       <div ref={resultsRef} className={`result-area${shown ? ' visible' : ''}`} aria-live="polite">
         <div className="result-title">
-          <div><div className="eyebrow">Pistes à explorer</div><h3>Vos espaces possibles</h3></div>
+          <div><div className="eyebrow">Pistes à explorer</div><h3>Votre réception au Domaine</h3></div>
           <button className="text-link" style={{ border: 0, background: 'none', textDecoration: 'underline', fontSize: 10 }} onClick={reset}>
             Modifier la recherche
           </button>

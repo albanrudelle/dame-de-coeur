@@ -8,7 +8,7 @@ import { Faq } from '@/components/dc/Faq'
 import { HowItWorks } from '@/components/dc/HowItWorks'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Domaine la Dame de Cœur | Salle de réception & discothèque en Corrèze' },
+  title: { absolute: 'Domaine la Dame de Cœur | Salle de réception, mariages & soirées en Corrèze' },
 }
 
 const INCLUS = [
@@ -20,7 +20,7 @@ const INCLUS = [
 
 const GALERIE = [
   { src: '/images/table-fleurs.jpg', alt: 'Table de réception avec bouquet et assiettes dressées' },
-  { src: '/images/piste-bar.jpg',    alt: 'Piste et bar de la discothèque' },
+  { src: '/images/piste-bar.jpg',    alt: "Piste LED et bar de l'espace festif" },
   { src: '/images/table-numero.jpg', alt: 'Centre de table avec bougies, bouquet et numéro de table' },
   { src: '/images/lounge.jpg',       alt: 'Espace lounge aux canapés rouges' },
   { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
@@ -41,7 +41,7 @@ export default async function HomePage() {
             <div className="eyebrow">Un lieu d&apos;exception pour vos plus beaux moments</div>
             <h1>{h.titreHaut ?? 'Un écrin au cœur'}<br /><em>{h.titreItalique ?? 'de la Corrèze.'}</em></h1>
             <p className="lead">
-              {h.texte ?? "Grande salle aux lustres en cristal, discothèque privée à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
+              {h.texte ?? "Grande salle aux lustres en cristal, espace festif à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
             </p>
             <div className="hero-actions">
               <Link className="button" href="/espaces">Découvrir nos espaces <span aria-hidden="true">↗</span></Link>
@@ -66,7 +66,7 @@ export default async function HomePage() {
         <div className="intro-mark" aria-hidden="true">✳</div>
         <h2>Un lieu, trois espaces,<br />votre histoire.</h2>
         <p className="lead">
-          À Ménoire, le Domaine la Dame de Cœur réunit en un seul lieu tout ce dont vous avez besoin pour une célébration inoubliable : une grande salle parée de lustres en cristal, une discothèque privée avec piste LED encastrée et un bar lounge miroir. Chaque espace a été pensé pour offrir un cadre de prestige, à portée de tous.
+          À Ménoire, le Domaine la Dame de Cœur réunit en un seul lieu tout ce dont vous avez besoin pour une célébration inoubliable : une grande salle parée de lustres en cristal, un espace festif avec piste LED encastrée et un bar lounge miroir. Les trois espaces sont réservés à votre seul événement, et chacun a été pensé pour offrir un cadre de prestige, à portée de tous.
         </p>
       </section>
 
@@ -98,8 +98,8 @@ export default async function HomePage() {
       <section className="section section-tone">
         <div className="wrap combo">
           <div className="combo-visual">
-            <Image src="/images/piste2.jpg" alt="Piste de danse et bar de la discothèque" width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
-            <div className="plan-caption"><span>La piste et le bar de la discothèque</span><span>Tout est déjà en place</span></div>
+            <Image src="/images/piste2.jpg" alt="Piste de danse et bar de l'espace festif" width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
+            <div className="plan-caption"><span>La piste et le bar de l'espace festif</span><span>Tout est déjà en place</span></div>
           </div>
           <div>
             <div className="eyebrow">Une réception clé en main</div>
@@ -108,7 +108,7 @@ export default async function HomePage() {
             <ul className="check-list">
               {INCLUS.map(l => <li key={l}>{l}</li>)}
             </ul>
-            <div className="price-teaser">Formule complète à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
+            <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
             <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier ma date ↗</a></p>
           </div>
         </div>

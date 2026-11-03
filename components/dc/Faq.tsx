@@ -1,10 +1,10 @@
 const ITEMS: [string, string][] = [
-  ['Combien de personnes pouvez-vous accueillir ?', "La grande salle reçoit jusqu'à 150 convives en banquet, la petite salle jusqu'à 50. Les espaces peuvent être loués séparément ou combinés pour une soirée complète."],
+  ['Combien de personnes pouvez-vous accueillir ?', "La grande salle reçoit jusqu'à 150 convives en banquet. Le Domaine est loué dans son ensemble : grande salle, espace festif et petite salle avec bar lounge sont à vous pour toute la durée de votre événement."],
   ['Que comprend la location ?', "Le bar professionnel, le son et la lumière (régie LED, lasers, boule à facettes), les tables, chaises et vaisselle, la climatisation, l'accès PMR et le parking privatif sont inclus. Une décoration thématique est possible en option."],
   ['Peut-on visiter le Domaine avant de réserver ?', "Oui, les visites se font sur rendez-vous, 7j/7, gratuitement et sans engagement. Faites une demande et nous vous proposons un créneau."],
   ["Sous quel délai reçoit-on un devis ?", "Notre équipe vous répond sous 24 heures ouvrées avec les disponibilités de votre date et un devis personnalisé."],
-  ['Peut-on louer uniquement la discothèque ?', "Oui. La discothèque, la grande salle et la petite salle se louent séparément ou ensemble, selon votre événement."],
-  ['Quel est le budget à prévoir ?', "La formule complète démarre autour de {prix} selon la date et les options. Le devis est gratuit et sans engagement."],
+  ['Peut-on louer une seule salle ?', "Non, le Domaine se loue dans son ensemble : vos invités profitent des trois espaces sans se déplacer, ce qui permet d'enchaîner vin d'honneur, repas et soirée sur place."],
+  ['Quel est le budget à prévoir ?', "La location du Domaine démarre autour de {prix} selon la date et les options. Le devis est gratuit et sans engagement."],
 ]
 
 export function Faq({ prix }: { prix: string }) {

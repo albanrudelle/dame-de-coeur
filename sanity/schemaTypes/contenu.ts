@@ -51,12 +51,12 @@ export const espace = defineType({
       options: {
         list: [
           {title: 'Grande salle de réception', value: 'grande-salle'},
-          {title: 'Discothèque privée', value: 'discotheque'},
+          {title: 'Espace festif & piste LED', value: 'espace-festif'},
           {title: 'Petite salle & bar lounge', value: 'petite-salle'},
         ],
       },
       validation: (Rule) => Rule.required(),
-      description: 'Choisissez l’espace à modifier. Un seul document par espace.',
+      description: 'Choisissez l’espace à modifier. Un seul document par espace. Le Domaine se loue dans son ensemble.',
     }),
     defineField({name: 'titre', title: 'Nom', type: 'string'}),
     defineField({name: 'cap', title: 'Sous-titre / capacité', type: 'string', description: "Ex : Jusqu'à 150 convives"}),

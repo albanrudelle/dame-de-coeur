@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent, type ReactNode } from 'react'
 import { contactSchema } from '@/lib/schemas'
-import { EVENT_TYPES, ESPACE_OPTIONS } from '@/lib/constants'
+import { EVENT_TYPES } from '@/lib/constants'
 
 type Values = {
   prenom: string
@@ -10,7 +10,6 @@ type Values = {
   email: string
   telephone: string
   typeEvenement: string
-  espace: string
   date: string
   nombrePersonnes: string
   message: string
@@ -51,7 +50,7 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
 }) {
   const [values, setValues] = useState<Values>({
     prenom: '', nom: '', email: '', telephone: '',
-    typeEvenement: defaultType, espace: '', date: defaultDate, nombrePersonnes: '',
+    typeEvenement: defaultType, date: defaultDate, nombrePersonnes: '',
     message: '', website: '',
   })
   const [errors, setErrors] = useState<Errors>({})
@@ -141,18 +140,12 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
             {EVENT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
         </Field>
-        <Field id="espace" label="Espace souhaité" optional error={errors.espace}>
-          <select id="espace" name="espace" value={values.espace} onChange={onChange} {...a11y('espace')}>
-            <option value="">Sélectionner</option>
-            {ESPACE_OPTIONS.map(t => <option key={t} value={t}>{t}</option>)}
-          </select>
+        <Field id="date" label="Date souhaitée" error={errors.date}>
+          <input id="date" name="date" type="date" value={values.date} onChange={onChange} {...a11y('date')} />
         </Field>
       </div>
 
       <div className="field-row">
-        <Field id="date" label="Date souhaitée" error={errors.date}>
-          <input id="date" name="date" type="date" value={values.date} onChange={onChange} {...a11y('date')} />
-        </Field>
         <Field id="nombrePersonnes" label="Nombre de personnes" error={errors.nombrePersonnes}>
           <input id="nombrePersonnes" name="nombrePersonnes" type="number" inputMode="numeric" min={1} max={300} placeholder="Ex : 80" value={values.nombrePersonnes} onChange={onChange} {...a11y('nombrePersonnes')} />
         </Field>

@@ -9,18 +9,18 @@ import { Faq } from '@/components/dc/Faq'
 
 export const metadata: Metadata = {
   title: 'Salle de mariage en Corrèze — Ménoire',
-  description: "Organisez votre mariage au Domaine la Dame de Cœur à Ménoire. Grande salle 150 convives, discothèque avec piste LED, bar lounge. Devis gratuit sous 24h.",
+  description: "Organisez votre mariage au Domaine la Dame de Cœur à Ménoire. Grande salle 150 convives, espace festif avec piste LED, bar lounge. Devis gratuit sous 24h.",
 }
 
 const PARCOURS = [
   { step: "Vin d'honneur", lieu: 'Petite salle & bar lounge miroir', desc: "Accueil des invités dans notre espace bar miroir. Ambiance intime, lumières tamisées, cocktails au bar professionnel." },
   { step: 'Repas',          lieu: 'Grande salle de réception',         desc: "Sous les lustres en cristal, face à la fresque murale. Tables décorées selon votre thème, jusqu'à 150 convives." },
-  { step: 'After',          lieu: 'Discothèque privée',                 desc: "Piste LED au sol, lasers, boule à facettes. Une vraie discothèque privée jusqu'au bout de la nuit." },
+  { step: 'After',          lieu: 'Espace festif et piste LED',          desc: "Piste LED au sol, lasers, boule à facettes. Une vraie soirée dansante jusqu'au bout de la nuit." },
 ]
 
 const INCLUS = [
   "Grande salle avec lustres en cristal (jusqu'à 150 convives)",
-  'Discothèque avec piste LED encastrée dans le sol',
+  'Espace festif avec piste LED encastrée dans le sol',
   'Bar mezzanine panoramique professionnel',
   "Petite salle lounge pour le vin d'honneur",
   'Son et lumière complets (régie, lasers, boule)',
@@ -76,13 +76,13 @@ export default async function MariagesPage() {
           </div>
           <div>
             <div className="panel">
-              <h3>Formule complète : tout est inclus</h3>
+              <h3>Le Domaine en exclusivité : tout est inclus</h3>
               <ul className="check-list">
                 {inclus.map(item => <li key={item}>{item}</li>)}
               </ul>
             </div>
             <div className="price-note">
-              Formule complète : de <strong>{prix}</strong> selon la date et les options. Devis personnalisé sous 24h.
+              Location du Domaine : de <strong>{prix}</strong> selon la date et les options. Devis personnalisé sous 24h.
             </div>
           </div>
         </div>
