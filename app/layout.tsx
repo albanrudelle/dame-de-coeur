@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: SITE.name,
-    images: [{ url: '/images/hero.jpg', alt: SITE.name }],
+    images: [{ url: '/images/salle-lumiere.jpg', alt: SITE.name }],
   },
   robots: { index: true, follow: true },
 }

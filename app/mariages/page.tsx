@@ -31,10 +31,10 @@ const INCLUS = [
 ]
 
 const GALERIE = [
-  { img: 'grande-salle', alt: 'Grande salle aux lustres en cristal' },
-  { img: 'table1',       alt: 'Table de mariage décorée' },
-  { img: 'piste',        alt: 'Piste de la discothèque' },
-  { img: 'table3',       alt: 'Détail de décoration' },
+  { img: 'fresque-banc', alt: 'Fresque murale et banc en bois de la grande salle' },
+  { img: 'table-ronde',  alt: 'Table ronde dressée pour un mariage' },
+  { img: 'champagne',    alt: 'Service du champagne pour le vin d\'honneur' },
+  { img: 'bouquet',      alt: 'Bouquet de mariage' },
 ]
 
 export default async function MariagesPage() {
@@ -47,7 +47,7 @@ export default async function MariagesPage() {
         eyebrow="Mariages"
         title={<>{p.titreHaut ?? 'Le lieu parfait,'}<br /><em>{p.titreItalique ?? 'pour un jour parfait.'}</em></>}
         lead={p.intro ?? "Célébrez votre mariage dans un écrin d'élégance au cœur de la Corrèze. Du vin d'honneur jusqu'au dernier slow, le Domaine orchestre chaque moment de votre journée."}
-        img={p.image ?? '/images/salle-table.jpg'}
+        img={p.image ?? '/images/salle-reception.jpg'}
         alt={p.alt ?? 'Mariage au Domaine la Dame de Cœur'}
         note="Ménoire · Corrèze"
       >
@@ -89,7 +89,7 @@ export default async function MariagesPage() {
       </section>
 
       <div className="photo-band">
-        <Image src="/images/reception.jpg" alt="Salle de réception dressée pour un mariage" fill sizes="100vw" />
+        <Image src="/images/table-longue.jpg" alt="Longue table de banquet dressée pour un mariage" fill sizes="100vw" />
       </div>
 
       <section className="section wrap" style={{ paddingTop: 0 }}>

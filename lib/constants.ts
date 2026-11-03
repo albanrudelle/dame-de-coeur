@@ -54,7 +54,7 @@ export const ESPACES = [
     ],
     ideal:  ['Mariage : repas et vin d\'honneur', 'Anniversaire 30 · 40 · 50 · 60 ans', 'Communion · Baptême · Repas de famille', 'Séminaire · Repas d\'entreprise', 'Réveillon · Soirée de gala'],
     tags:   ['150 convives', 'Banquet · Cocktail', 'Climatisée', 'PMR'],
-    img:    '/images/grande-salle.jpg',
+    img:    '/images/salle-lustres.jpg',
   },
   {
     num:    '02',

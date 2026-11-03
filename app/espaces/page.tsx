@@ -17,7 +17,7 @@ export default async function EspacesPage() {
         eyebrow="Les espaces"
         title={<>{p.titreHaut ?? 'Trois univers,'}<br /><em>{p.titreItalique ?? 'une soirée complète.'}</em></>}
         lead={p.intro ?? "Chaque espace peut être loué séparément ou combiné pour une expérience complète, du vin d'honneur au dernier slow."}
-        img={p.image ?? '/images/hero.jpg'}
+        img={p.image ?? '/images/table-rideau.jpg'}
         alt={p.alt ?? 'La grande salle du Domaine la Dame de Cœur'}
         note="3 espaces · 150 convives maximum"
       />
@@ -62,7 +62,7 @@ export default async function EspacesPage() {
 
       <div className="split tone">
         <div className="split-media">
-          <Image src={p.imageDomaine ?? '/images/exterieur.jpg'} alt={p.altDomaine ?? 'Façade extérieure du Domaine la Dame de Cœur'} fill sizes="(max-width: 680px) 100vw, 50vw" />
+          <Image src={p.imageDomaine ?? '/images/domaine-2cv.jpg'} alt={p.altDomaine ?? 'Le Domaine la Dame de Cœur à Ménoire, façade et 2CV bleu turquoise'} fill sizes="(max-width: 680px) 100vw, 50vw" />
         </div>
         <div className="split-body">
           <div className="eyebrow">Le Domaine</div>

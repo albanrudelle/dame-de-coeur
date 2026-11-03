@@ -19,11 +19,11 @@ const INCLUS = [
 ]
 
 const GALERIE = [
-  { src: '/images/salle-table2.jpg', alt: 'Salle de réception décorée' },
+  { src: '/images/table-fleurs.jpg', alt: 'Table de réception avec bouquet et assiettes dressées' },
   { src: '/images/piste-bar.jpg',    alt: 'Piste et bar de la discothèque' },
-  { src: '/images/lounge.jpg',       alt: 'Espace lounge' },
-  { src: '/images/table1.jpg',       alt: 'Table décorée' },
-  { src: '/images/table3.jpg',       alt: 'Détail de décoration' },
+  { src: '/images/table-numero.jpg', alt: 'Centre de table avec bougies, bouquet et numéro de table' },
+  { src: '/images/lounge.jpg',       alt: 'Espace lounge aux canapés rouges' },
+  { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
 ]
 
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
@@ -54,7 +54,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="hero-image">
-            <Image src={h.image ?? '/images/hero.jpg'} alt={h.alt ?? 'Domaine la Dame de Cœur, Ménoire, Corrèze'} fill priority sizes="(max-width: 680px) 100vw, 60vw" />
+            <Image src={h.image ?? '/images/salle-lumiere.jpg'} alt={h.alt ?? 'La grande salle du Domaine la Dame de Cœur, dressée pour une réception'} fill priority sizes="(max-width: 680px) 100vw, 60vw" />
             <div className="image-note">Ménoire · Corrèze</div>
           </div>
         </div>
