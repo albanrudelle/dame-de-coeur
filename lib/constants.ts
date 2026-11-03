@@ -78,7 +78,7 @@ export const ESPACES = [
     slug:   'petite-salle',
     titre:  'Petite salle & bar lounge',
     cap:    'Jusqu\'à 50 convives',
-    desc:   'Bar miroir central design avec comptoir rétroéclairé, parquet chaleureux, éclairages d\'ambiance colorés. L\'espace idéal pour les soirées intimes et les cocktails.',
+    desc:   'Bar miroir central design avec comptoir rétroéclairé, parquet chaleureux, éclairages d\'ambiance colorés. L\'espace idéal pour les cocktails et les soirées conviviales.',
     detail: [
       'Bar miroir design rétroéclairé',
       'Tireuse à bière professionnelle',

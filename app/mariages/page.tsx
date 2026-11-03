@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 const PARCOURS = [
-  { step: "Vin d'honneur", lieu: 'Petite salle & bar lounge miroir', desc: "Accueil des invités dans notre espace bar miroir. Ambiance intime, lumières tamisées, cocktails au bar professionnel." },
+  { step: "Vin d'honneur", lieu: 'Petite salle & bar lounge miroir', desc: "Accueil des invités dans notre espace bar miroir. Ambiance chaleureuse, lumières tamisées, cocktails au bar professionnel." },
   { step: 'Repas',          lieu: 'Grande salle de réception',         desc: "Sous les lustres en cristal, face à la fresque murale. Tables décorées selon votre thème, jusqu'à 150 convives." },
   { step: 'After',          lieu: 'Espace festif et piste LED',          desc: "Piste LED au sol, lasers, boule à facettes. Une vraie soirée dansante jusqu'au bout de la nuit." },
 ]

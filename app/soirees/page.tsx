@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 // "type" correspond à une valeur de EVENT_TYPES (préremplit le formulaire de contact)
 const EVENTS = [
   { img: 'piste4',       type: 'Anniversaire',             label: 'Anniversaires',              titre: '30 · 40 · 50 · 60 ans',                 desc: "Jusqu'à 150 personnes dans un cadre de prestige, avec décoration thématique disponible pour une soirée mémorable.", tags: ["Jusqu'à 150 personnes", 'Décoration thème', 'Bar inclus'] },
-  { img: 'petite-salle', type: 'EVJF / EVG',               label: 'EVJF & EVG',                 titre: 'La nuit avant le grand jour',           desc: "Le bar miroir design, l'ambiance lounge, les éclairages tamisés et la piste LED : une soirée intime et festive, à votre image.", tags: ['Bar miroir', 'Piste LED', 'Personnalisation totale'] },
+  { img: 'petite-salle', type: 'EVJF / EVG',               label: 'EVJF & EVG',                 titre: 'La nuit avant le grand jour',           desc: "Le bar miroir design, l'ambiance lounge, les éclairages tamisés et la piste LED : une soirée conviviale et festive, à votre image.", tags: ['Bar miroir', 'Piste LED', 'Personnalisation totale'] },
   { img: 'ceremonie',    type: 'Séminaire',                label: 'Entreprise & Séminaire',     titre: "Journée de travail, dîner d'équipe",    desc: "Les ateliers dans un espace, le repas dans un autre, la soirée d'équipe sur la piste : tout s'enchaîne naturellement sur place. Équipement audiovisuel disponible.", tags: ['Plusieurs espaces', 'Parking aisé'] },
   { img: 'piste3',       type: 'Réveillon / Soirée thème', label: 'Réveillons & Soirées thème', titre: 'Noël · Saint-Valentin · Années 80…',    desc: "L'espace festif se transforme entièrement selon votre univers. Chaque thème réinvente l'espace pour une soirée hors du commun.", tags: ['Décoration immersive', 'Piste LED'] },
 ]
@@ -43,7 +43,7 @@ export default async function SoireesPage() {
             <div className="eyebrow">Tous vos événements</div>
             <h2>Une salle,<br />mille occasions.</h2>
           </div>
-          <p className="lead">Quel que soit l&apos;événement, tout le Domaine est à vous : la grande salle pour réunir tout le monde, l&apos;espace festif pour danser, la petite salle pour les moments plus intimes.</p>
+          <p className="lead">Quel que soit l&apos;événement, tout le Domaine est à vous : la grande salle pour réunir tout le monde, l&apos;espace festif pour danser, la petite salle et son bar lounge pour les cocktails et les moments conviviaux.</p>
         </div>
         <div className="event-grid">
           {events.map(ev => (

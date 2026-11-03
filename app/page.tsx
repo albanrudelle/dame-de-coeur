@@ -26,7 +26,7 @@ const GALERIE = [
   { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
 ]
 
-const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · L\'espace intime']
+const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · Le bar lounge']
 
 export default async function HomePage() {
   const [s, ESPACES, prix] = await Promise.all([getSettings(), getEspaces(), getPrix()])
