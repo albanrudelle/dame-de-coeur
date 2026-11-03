@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { SITE } from '@/lib/constants'
 import { StickyCta } from '@/components/StickyCta'
+import { ChromeGate } from '@/components/ChromeGate'
 import { getSettings } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -41,10 +42,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
       </head>
       <body className="flex flex-col min-h-screen">
-        <a href="#contenu" className="skip-link">Aller au contenu</a>
-        <Navbar phone={phone} />
+        <ChromeGate><a href="#contenu" className="skip-link">Aller au contenu</a></ChromeGate>
+        <ChromeGate><Navbar phone={phone} /></ChromeGate>
         <main id="contenu" className="flex-1">{children}</main>
-        <Footer />
+        <ChromeGate><Footer /></ChromeGate>
         <StickyCta phone={phone} />
       </body>
     </html>
