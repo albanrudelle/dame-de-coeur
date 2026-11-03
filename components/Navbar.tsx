@@ -11,7 +11,7 @@ const LINKS = [
   { href: '/espaces',  label: 'Les Espaces' },
 ]
 
-export function Navbar({ phone }: { phone?: string }) {
+export function Navbar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
@@ -46,7 +46,6 @@ export function Navbar({ phone }: { phone?: string }) {
               Demander un devis <span aria-hidden="true">↗</span>
             </Link>
           </div>
-          {phone ? <a className="nav-phone" href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a> : null}
           <Link href="/contact" className="button">
             Demander un devis <span aria-hidden="true">↗</span>
           </Link>
