@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SITE } from '@/lib/constants'
 
 const LINKS = [
@@ -15,6 +15,16 @@ export function Navbar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
+  // Menu ouvert : on bloque le défilement de la page et Échap le referme
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey) }
+  }, [open])
+
   return (
     <div className="dc" style={{ display: 'contents' }}>
       <header className="site-header">
@@ -27,11 +37,12 @@ export function Navbar() {
             className="menu-toggle"
             aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={open}
+            aria-controls="menu-principal"
             onClick={() => setOpen(!open)}
           >
             {open ? '✕' : '☰'}
           </button>
-          <div className={`nav-links${open ? ' open' : ''}`}>
+          <div id="menu-principal" className={`nav-links${open ? ' open' : ''}`}>
             {LINKS.map(({ href, label }) => (
               <Link
                 key={href}
