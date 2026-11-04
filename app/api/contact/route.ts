@@ -23,7 +23,7 @@ const hits = new Map<string, number[]>()
 function tooMany(ip: string): boolean {
   const now = Date.now()
   if (hits.size > 5000) {
-    for (const [k, v] of hits) if (v.every(t => now - t > WINDOW_MS)) hits.delete(k)
+    hits.forEach((v, k) => { if (v.every(t => now - t > WINDOW_MS)) hits.delete(k) })
   }
   const recent = (hits.get(ip) ?? []).filter(t => now - t < WINDOW_MS)
   if (recent.length >= MAX_PER_WINDOW) {
