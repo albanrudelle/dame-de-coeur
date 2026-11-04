@@ -38,7 +38,7 @@ export default async function HomePage() {
       <section className="hero">
         <div className="hero-wrap">
           <div className="hero-copy">
-            <div className="eyebrow">Un lieu d&apos;exception pour vos plus beaux moments</div>
+            <div className="eyebrow">Salle de réception · Corrèze</div>
             <h1>{h.titreHaut ?? 'Un écrin au cœur'}<br /><em>{h.titreItalique ?? 'de la Corrèze.'}</em></h1>
             <p className="lead">
               {h.texte ?? "Grande salle aux lustres en cristal, espace festif à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
