@@ -2,9 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Charte graphique unique : utilisée par le site (dc.css) et par Tailwind */
+:root {
+  --paper: #f5f2ec;      /* fond principal */
+  --paper2: #ebe6dc;     /* fond secondaire */
+  --white: #fffdfa;      /* blanc cassé (cartes) */
+  --ink: #242923;        /* texte principal */
+  --muted: #73776d;      /* texte secondaire */
+  --olive: #555d4c;
+  --olive-dark: #30382e;
+  --gold: #aa9068;       /* accents */
+  --line: #d8d2c6;       /* traits et bordures */
+  --error: #a23b2a;
+  --shadow: 0 18px 50px rgba(35,39,31,.10);
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', Arial, sans-serif;
+}
+
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply font-sans text-charcoal antialiased; background-color: #f5f2ec; }
+  body { @apply font-sans text-charcoal antialiased; background-color: var(--paper); }
 }
 
 @layer components {
@@ -24,7 +41,7 @@
   .btn-gold {
     @apply inline-flex items-center gap-3 bg-gold-light border border-gold-light text-charcoal
     font-sans text-[10px] font-medium tracking-widest2 uppercase px-8 py-4
-    transition-all duration-200 hover:bg-[#DDD0BE];
+    transition-all duration-200 hover:bg-border;
   }
 
   /* Section labels */
@@ -56,7 +73,7 @@
   .field-label {
     @apply block text-[10px] font-sans font-medium tracking-widest uppercase text-mid mb-1;
   }
-  .field-error { @apply text-[11px] text-red-600 mt-1; }
+  .field-error { @apply text-[11px] text-error mt-1; }
 
   /* Link with animated underline arrow */
   .link-arrow {

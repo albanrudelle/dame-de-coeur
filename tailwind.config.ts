@@ -8,17 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream:    '#F7F4EF',
-        ivory:    '#FDFBF8',
-        gold:     '#B8966E',
-        'gold-light': '#EDE4D8',
-        charcoal: '#1C1C1A',
-        mid:      '#6B6860',
-        border:   '#DDD8D0',
+        // Mêmes couleurs que la charte définie dans app/globals.css
+        cream:        'var(--paper)',
+        ivory:        'var(--white)',
+        gold:         'var(--gold)',
+        'gold-light': 'var(--paper2)',
+        charcoal:     'var(--ink)',
+        mid:          'var(--muted)',
+        border:       'var(--line)',
+        olive:        'var(--olive)',
+        'olive-dark': 'var(--olive-dark)',
+        error:        'var(--error)',
       },
       fontFamily: {
-        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans:  ['Jost', 'Helvetica Neue', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans:  ['DM Sans', 'Arial', 'sans-serif'],
       },
       letterSpacing: {
         widest2: '0.22em',

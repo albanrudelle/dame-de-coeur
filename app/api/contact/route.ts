@@ -68,15 +68,15 @@ function esc(s: string) {
 function emailHtml(d: ContactFormData) {
   const rows = Object.entries(d)
     .filter(([, v]) => v)
-    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#6B6860;font-size:12px;text-transform:uppercase;letter-spacing:.08em;vertical-align:top;width:160px">${esc(LABELS[k] ?? k)}</td><td style="padding:6px 0;font-weight:500">${esc(String(v)).replace(/\n/g, '<br>')}</td></tr>`)
+    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#73776d;font-size:12px;text-transform:uppercase;letter-spacing:.08em;vertical-align:top;width:160px">${esc(LABELS[k] ?? k)}</td><td style="padding:6px 0;font-weight:500">${esc(String(v)).replace(/\n/g, '<br>')}</td></tr>`)
     .join('')
-  return `<html><body style="font-family:Georgia,serif;max-width:580px;margin:0 auto;padding:24px;color:#1C1C1A">
-    <div style="border-top:2px solid #AA9068;padding-top:20px;margin-bottom:24px">
+  return `<html><body style="font-family:Georgia,serif;max-width:580px;margin:0 auto;padding:24px;color:#242923">
+    <div style="border-top:2px solid #aa9068;padding-top:20px;margin-bottom:24px">
       <h1 style="font-size:20px;font-weight:400;margin:0 0 4px">${esc(SITE.name)}</h1>
-      <p style="color:#6B6860;font-size:12px;margin:0;font-style:italic">Nouvelle demande de devis</p>
+      <p style="color:#73776d;font-size:12px;margin:0;font-style:italic">Nouvelle demande de devis</p>
     </div>
     <table style="width:100%;border-collapse:collapse">${rows}</table>
-    <div style="margin-top:24px;padding:14px;background:#F5F2EC;border-left:2px solid #AA9068;font-size:12px;color:#6B6860">
+    <div style="margin-top:24px;padding:14px;background:#f5f2ec;border-left:2px solid #aa9068;font-size:12px;color:#73776d">
       Répondre directement à cet e-mail pour contacter la personne.
     </div>
   </body></html>`
