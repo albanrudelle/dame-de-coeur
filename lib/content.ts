@@ -33,7 +33,7 @@ type RawSettings = {
   heroTitreHaut?: string; heroTitreItalique?: string; heroTexte?: string; heroImage?: SanityImg
   galerie?: SanityImg[]
   capaciteMax?: string; evenements?: string; noteGoogle?: string; nombreAvis?: string
-  raisonSociale?: string; siret?: string; directeurPublication?: string; adresseSiege?: string
+  raisonSociale?: string; formeJuridique?: string; capitalSocial?: string; siret?: string; directeurPublication?: string; adresseSiege?: string
 }
 
 export async function getSettings() {
@@ -63,6 +63,8 @@ export async function getSettings() {
     },
     legal: {
       raisonSociale: clean(s.raisonSociale),
+      formeJuridique: clean(s.formeJuridique),
+      capital: clean(s.capitalSocial),
       siret: clean(s.siret),
       directeur: clean(s.directeurPublication),
       siege: clean(s.adresseSiege),

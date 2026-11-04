@@ -16,6 +16,9 @@ export default async function MentionsLegales() {
         <section>
           <h2>Éditeur</h2>
           <p>{l.raisonSociale ?? SITE.name} · {l.siege ?? s.address}</p>
+          {(l.formeJuridique || l.capital) && (
+            <p>{[l.formeJuridique, l.capital && `au capital de ${l.capital}`].filter(Boolean).join(' ')}</p>
+          )}
           {l.siret && <p>SIRET : {l.siret}</p>}
           {l.directeur && <p>Directeur de la publication : {l.directeur}</p>}
           <p>{s.phoneOk ? `Tél : ${s.phone} · ` : ''}E-mail : {s.email}</p>

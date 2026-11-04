@@ -53,6 +53,8 @@ export const reglages = defineType({
 
     // ── Mentions légales
     defineField({name: 'raisonSociale', title: 'Raison sociale', type: 'string', group: 'legal'}),
+    defineField({name: 'formeJuridique', title: 'Forme juridique', type: 'string', group: 'legal', description: 'Ex : SARL, SAS, EURL, entreprise individuelle. Laisser vide si entreprise individuelle sans forme.'}),
+    defineField({name: 'capitalSocial', title: 'Capital social', type: 'string', group: 'legal', description: 'Ex : 5 000 €. Laisser vide si entreprise individuelle.'}),
     defineField({name: 'siret', title: 'SIRET', type: 'string', group: 'legal'}),
     defineField({name: 'directeurPublication', title: 'Directeur de la publication', type: 'string', group: 'legal'}),
     defineField({name: 'adresseSiege', title: 'Adresse du siège', type: 'string', group: 'legal'}),
