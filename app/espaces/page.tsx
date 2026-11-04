@@ -55,7 +55,7 @@ export default async function EspacesPage() {
         <p className="lead">Vin d&apos;honneur · Repas · Soirée dansante. Le Domaine est privatisé dans son ensemble pour votre événement : vos invités ne quittent jamais le site.</p>
         <p className="price">Fourchette indicative : <strong>{prix}</strong></p>
         <div className="btn-row">
-          <Link className="button button-light" href="/contact">Demander un devis</Link>
+          <Link className="button button-light" href="/contact">Obtenir un devis gratuit</Link>
           <Link className="button button-outline-light" href="/mariages">En savoir plus sur les mariages</Link>
         </div>
       </section>
@@ -68,12 +68,12 @@ export default async function EspacesPage() {
           <div className="eyebrow">Le Domaine</div>
           <h2>Ménoire,<br /><em>Corrèze.</em></h2>
           <p className="lead">
-            {p.texteDomaine ?? `Situé à Ménoire, le Domaine est accessible depuis Tulle, Brive-la-Gaillarde et Ussel. Façade en pierre de taille, grand parking privatif, accès PMR. Un site d’exception au cœur de la nature corrézienne.`}
+            {p.texteDomaine ?? `Situé à Ménoire, le Domaine est accessible depuis Tulle, Brive-la-Gaillarde et Ussel. Façade en pierre de taille, grand parking privatif, accès PMR. Un site au cœur de la nature corrézienne.`}
           </p>
           <ul className="check-list">
             {['Accessible depuis Tulle, Brive, Ussel', 'Grand parking privatif sur site', 'Accès PMR · Plain-pied · Tout confort'].map(t => <li key={t}>{t}</li>)}
           </ul>
-          <Link className="button" href="/contact">Planifier une visite →</Link>
+          <Link className="button" href="/contact">Organiser une visite →</Link>
         </div>
       </div>
     </div>

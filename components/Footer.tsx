@@ -24,7 +24,7 @@ const EVENEMENTS: [string, string][] = [
 const DOMAINE: [string, string][] = [
   ['Les espaces', '/espaces'],
   ['Disponibilités & devis', '/contact'],
-  ['Planifier une visite', '/contact'],
+  ['Organiser une visite', '/contact'],
   ['Mentions légales', '/mentions-legales'],
 ]
 

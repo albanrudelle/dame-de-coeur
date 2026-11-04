@@ -52,7 +52,7 @@ export default async function MariagesPage() {
         note="Ménoire · Corrèze"
       >
         <div className="hero-actions">
-          <Link className="button" href="/contact">Demander un devis →</Link>
+          <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
           <Link className="button button-outline" href="/espaces">Voir les espaces</Link>
         </div>
       </PageHero>
@@ -62,7 +62,7 @@ export default async function MariagesPage() {
         <div className="wrap combo combo-top">
           <div>
             <div className="eyebrow">Le parcours d&apos;une soirée</div>
-            <h2>Trois espaces,<br /><em>une nuit inoubliable.</em></h2>
+            <h2>Trois espaces,<br /><em>du repas à la dernière danse.</em></h2>
             <ol className="steps">
               {PARCOURS.map(p => (
                 <li key={p.step}>
@@ -72,7 +72,7 @@ export default async function MariagesPage() {
                 </li>
               ))}
             </ol>
-            <Link className="button" href="/contact">Demander un devis →</Link>
+            <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
           </div>
           <div>
             <div className="panel">

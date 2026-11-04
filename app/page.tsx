@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 }
 
 const INCLUS = [
-  'Bar professionnel inclus : tireuse à bière, comptoir rétroéclairé',
-  'Son & lumière complets : régie LED, lasers, boule à facettes',
-  'Décoration sur mesure : packs thématiques selon vos couleurs',
-  'Accès PMR, plain-pied et grand parking privatif sur site',
+  'Tables, chaises et vaisselle',
+  'Bar professionnel : tireuse à bière, comptoir rétroéclairé',
+  'Son et lumière : régie LED, lasers, boule à facettes',
+  'Climatisation, accès PMR et grand parking privatif',
 ]
 
 const GALERIE = [
@@ -38,14 +38,14 @@ export default async function HomePage() {
       <section className="hero">
         <div className="hero-wrap">
           <div className="hero-copy">
-            <div className="eyebrow">Salle de réception · Corrèze</div>
-            <h1>{h.titreHaut ?? 'Un écrin au cœur'}<br /><em>{h.titreItalique ?? 'de la Corrèze.'}</em></h1>
+            <div className="eyebrow">Domaine privatisé · Ménoire, Corrèze</div>
+            <h1>{h.titreHaut ?? 'L\'élégance d\'une réception.'}<br /><em>{h.titreItalique ?? 'L\'énergie d\'une soirée.'}</em></h1>
             <p className="lead">
-              {h.texte ?? "Grande salle aux lustres en cristal, espace festif à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
+              {h.texte ?? "Une grande salle aux lustres en cristal, un espace festif avec piste LED et un bar lounge : trois ambiances réservées à votre seul événement, avec bar, son et lumière sur place."}
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/espaces">Découvrir nos espaces →</Link>
-              <a className="button button-outline" href="#configurateur">Vérifier une date</a>
+              <Link className="button" href="/espaces">Découvrir le domaine →</Link>
+              <a className="button button-outline" href="#configurateur">Vérifier une disponibilité</a>
             </div>
             <div className="hero-meta">
               <div><strong>{s.stats.capacite}</strong> convives maximum</div>
@@ -64,9 +64,9 @@ export default async function HomePage() {
       <section className="intro wrap" id="lieu">
         <div className="eyebrow" style={{ justifyContent: 'center' }}>Le Domaine</div>
         <div className="intro-mark" aria-hidden="true"></div>
-        <h2>Un lieu, trois espaces,<br />votre histoire.</h2>
+        <h2>Trois espaces,<br />un seul événement : le vôtre.</h2>
         <p className="lead">
-          À Ménoire, le Domaine la Dame de Cœur réunit en un seul lieu tout ce dont vous avez besoin pour une célébration inoubliable : une grande salle parée de lustres en cristal, un espace festif avec piste LED encastrée et un bar lounge miroir. Les trois espaces sont réservés à votre seul événement, et chacun a été pensé pour offrir un cadre de prestige, à portée de tous.
+          À Ménoire, le Domaine la Dame de Cœur réunit une grande salle parée de lustres en cristal pour le repas, un espace festif avec piste LED encastrée pour la soirée et un bar lounge miroir pour l'accueil et les cocktails. Le Domaine est loué dans son ensemble : vos invités passent d'une ambiance à l'autre sans quitter les lieux.
         </p>
       </section>
 
@@ -102,14 +102,14 @@ export default async function HomePage() {
             <div className="plan-caption"><span>La piste et le bar de l'espace festif</span><span>Tout est déjà en place</span></div>
           </div>
           <div>
-            <div className="eyebrow">Une réception clé en main</div>
-            <h2>Vous apportez l&apos;envie,<br />on s&apos;occupe du reste.</h2>
-            <p className="lead">Bar, son, lumière, accessibilité : l&apos;essentiel est déjà installé, pour que vous puissiez vous concentrer sur vos invités.</p>
+            <div className="eyebrow">Équipements</div>
+            <h2>Ce qui est inclus<br />dans la location.</h2>
+            <p className="lead">L&apos;essentiel est déjà installé, pour que vous puissiez vous concentrer sur vos invités. En option : une décoration thématique selon vos couleurs.</p>
             <ul className="check-list">
               {INCLUS.map(l => <li key={l}>{l}</li>)}
             </ul>
             <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
-            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier ma date →</a></p>
+            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier une disponibilité →</a></p>
           </div>
         </div>
       </section>
@@ -136,9 +136,9 @@ export default async function HomePage() {
         <div className="section-head">
           <div>
             <div className="eyebrow">L&apos;esprit du lieu</div>
-            <h2>Imaginez l&apos;instant.</h2>
+            <h2>Du dîner à la dernière danse.</h2>
           </div>
-          <p className="lead">Une salle dressée, un toast partagé, les lumières qui s&apos;allument. Projetez-vous dans votre prochaine célébration.</p>
+          <p className="lead">Tables dressées sous les lustres, bar lounge, piste illuminée : voici le Domaine tel que vos invités le découvrent.</p>
         </div>
         <div className="gallery">
           {galerie.map(g => (
@@ -157,11 +157,11 @@ export default async function HomePage() {
       <section className="contact-band">
         <div className="wrap contact-inner">
           <div>
-            <div className="eyebrow">Votre célébration commence ici</div>
+            <div className="eyebrow">Une date, une question ?</div>
             <h2>Parlons de votre événement.</h2>
             <p className="muted" style={{ margin: 0 }}>Disponibilités, visite du Domaine, devis personnalisé : notre équipe vous répond sous 24 heures.</p>
           </div>
-          <Link className="button" href="/contact">Demander un devis →</Link>
+          <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
         </div>
       </section>
     </div>

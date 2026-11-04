@@ -54,11 +54,11 @@ export function Navbar() {
               </Link>
             ))}
             <Link href="/contact" className="button mobile-only" onClick={() => setOpen(false)}>
-              Demander un devis →
+              Devis gratuit →
             </Link>
           </div>
           <Link href="/contact" className="button">
-            Demander un devis →
+            Devis gratuit →
           </Link>
         </nav>
       </header>

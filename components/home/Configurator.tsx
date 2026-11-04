@@ -23,7 +23,7 @@ export function Configurator() {
 
   const cards = ESPACES
   const comboTitle = 'Le Domaine en exclusivité'
-  const comboText = 'Vin d\'honneur, repas puis soirée dansante : les trois espaces sont à vous, sans déplacement pour vos invités.'
+  const comboText = 'Le Domaine est loué dans son ensemble : les trois espaces sont réservés à votre événement, pour enchaîner vin d\'honneur, repas et soirée sans déplacer vos invités.'
   const contactHref = `/contact?type=${encodeURIComponent(eventType)}${date ? `&date=${date}` : ''}`
   const pref = choice === 'banquet' ? 'banquet assis' : choice === 'cocktail' ? 'cocktail' : 'configuration à définir'
 
@@ -76,14 +76,14 @@ export function Configurator() {
           <input id="eventDate" type="date" value={date} onChange={e => setDate(e.target.value)} />
         </div>
         <div className="form-actions">
-          <small>Vos critères pourront être modifiés.</small>
-          <button type="submit" className="button">Voir les possibilités →</button>
+          <small>Sans engagement. Vous pourrez modifier vos critères.</small>
+          <button type="submit" className="button">Découvrir les espaces adaptés à mon événement →</button>
         </div>
       </form>
 
       <div ref={resultsRef} className={`result-area${shown ? ' visible' : ''}`} aria-live="polite">
         <div className="result-title">
-          <div><div className="eyebrow">Pistes à explorer</div><h3>Votre réception au Domaine</h3></div>
+          <div><div className="eyebrow">Vos espaces</div><h3>Votre événement au Domaine</h3></div>
           <button className="text-link" style={{ border: 0, background: 'none', textDecoration: 'underline', fontSize: 10 }} onClick={reset}>
             Modifier la recherche
           </button>
@@ -112,7 +112,7 @@ export function Configurator() {
           Ces pistes sont indicatives et ne constituent pas une confirmation de disponibilité. Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.
         </div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 17 }}>
-          <Link href={contactHref} className="button">Demander un devis →</Link>
+          <Link href={contactHref} className="button">Obtenir un devis gratuit →</Link>
           <button className="button button-outline" onClick={reset}>Modifier mes critères</button>
         </div>
       </div>

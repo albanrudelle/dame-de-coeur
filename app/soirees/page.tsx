@@ -33,7 +33,7 @@ export default async function SoireesPage() {
         note="Piste LED · Régie lumière"
       >
         <div className="hero-actions">
-          <Link className="button" href="/contact">Demander un devis →</Link>
+          <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
         </div>
       </PageHero>
 

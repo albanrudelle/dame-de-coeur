@@ -7,7 +7,7 @@ type Props = {
   label?: string
 }
 
-export function CtaBand({ eyebrow, title, text, label = 'Demander un devis' }: Props) {
+export function CtaBand({ eyebrow, title, text, label = 'Obtenir un devis gratuit' }: Props) {
   return (
     <section className="contact-band">
       <div className="wrap contact-inner">
