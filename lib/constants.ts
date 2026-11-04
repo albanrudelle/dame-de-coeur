@@ -88,7 +88,7 @@ export const ESPACES = [
     ],
     ideal:  ['Vin d\'honneur', 'Cocktail', 'Accueil des invités'],
     tags:   ['50 convives', 'Bar miroir', 'EVJF · EVG', 'Lounge'],
-    img:    '/images/petite-salle2.jpg',
+    img:    '/images/bar-miroir.jpg',
   },
 ]
 
