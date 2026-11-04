@@ -77,7 +77,7 @@ export function Configurator() {
         </div>
         <div className="form-actions">
           <small>Vos critères pourront être modifiés.</small>
-          <button type="submit" className="button">Voir les possibilités ↗</button>
+          <button type="submit" className="button">Voir les possibilités →</button>
         </div>
       </form>
 
@@ -112,7 +112,7 @@ export function Configurator() {
           Ces pistes sont indicatives et ne constituent pas une confirmation de disponibilité. Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.
         </div>
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 17 }}>
-          <Link href={contactHref} className="button">Demander un devis ↗</Link>
+          <Link href={contactHref} className="button">Demander un devis →</Link>
           <button className="button button-outline" onClick={reset}>Modifier mes critères</button>
         </div>
       </div>

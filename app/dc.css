@@ -62,7 +62,7 @@
 .dc .plan-caption{display:flex;justify-content:space-between;gap:15px;margin-top:15px;font-size:12px;color:#666b61}
 .dc .check-list{list-style:none;padding:0;margin:25px 0}
 .dc .check-list li{display:flex;gap:12px;margin:12px 0;color:#5f655b;font-size:13px}
-.dc .check-list li:before{content:'✳';color:var(--gold)}
+.dc .check-list li:before{content:'';flex:none;width:7px;height:7px;margin-top:7px;background:var(--gold);transform:rotate(45deg)}
 .dc .configurator{background:var(--olive-dark);color:#f7f3eb;padding:85px 0}
 .dc .configurator h2{color:#f7f3eb}
 .dc .configurator .lead{color:#c6cabe}
@@ -310,11 +310,8 @@
 .dc .how-step h3{font-family:var(--serif);font-size:24px;font-weight:400;margin:0 0 8px}
 .dc .how-step p{margin:0;color:#4d5249;font-size:15px;line-height:1.7}
 .dc .price-teaser{margin-top:22px;padding:16px 18px;border-left:2px solid var(--gold);background:#f7f3eb;font-size:15px;line-height:1.6}
-.dc .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(245,242,236,.97);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08)}
-.dc .sticky-cta .button{flex:1;min-height:46px;padding:0 14px;font-size:13px}
 .dc .nav-phone{font-size:14px;font-weight:600;color:var(--olive-dark);white-space:nowrap}
-@media (max-width:900px){.dc .how{grid-template-columns:1fr}.dc .sticky-cta.on{display:flex}.dc .nav-phone{display:none}body{padding-bottom:0}}
-@media (max-width:900px){.dc .footer{padding-bottom:72px}}
+@media (max-width:900px){.dc .how{grid-template-columns:1fr}.dc .nav-phone{display:none}body{padding-bottom:0}}
 
 /* ───────── Mobile & tablette (refonte) ───────── */
 html{-webkit-text-size-adjust:100%}
@@ -418,7 +415,7 @@ html{-webkit-text-size-adjust:100%}
 .dc .contact-band{padding:44px 0}
 .dc .contact-inner .button{width:100%;min-height:52px}
 .dc .btn-row .button{width:100%}
-.dc .footer{padding:42px 0 90px}
+.dc .footer{padding:42px 0 36px}
 .dc .footer-links a{display:inline-block;padding:5px 0}
 .dc .legal h1{font-size:34px}
 }
@@ -433,3 +430,14 @@ html{-webkit-text-size-adjust:100%}
 .dc .text-link,.dc .arrow-link{padding-block:8px}
 }
 @media(hover:none){.dc .space-card:hover img,.dc .strip>div:hover img,.dc .event-card:hover .event-media img{transform:none}.dc .button:hover{transform:none}}
+
+/* Mobile v3 */
+.dc .intro-mark{font-size:0;width:9px;height:9px;background:var(--gold);transform:rotate(45deg);margin:0 auto 22px}
+@media(max-width:520px){
+.dc .brand{font-size:18px;letter-spacing:0}
+.dc .brand small{font-size:7px;letter-spacing:.26em}
+.dc .page-head h1,.dc .intro h1{font-size:clamp(34px,10vw,44px);overflow-wrap:break-word}
+.dc .how{gap:34px}
+.dc .how-step{padding-top:26px}
+.dc .section-head h2{font-size:clamp(30px,9vw,40px)}
+}

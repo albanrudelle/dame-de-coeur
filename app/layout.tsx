@@ -4,7 +4,6 @@ import './dc.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { SITE } from '@/lib/constants'
-import { StickyCta } from '@/components/StickyCta'
 import { ChromeGate } from '@/components/ChromeGate'
 import { getSettings } from '@/lib/content'
 
@@ -33,7 +32,6 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const s = await getSettings()
-  const phone = s.phoneOk ? s.phone : undefined
   return (
     <html lang="fr">
       <head>
@@ -46,7 +44,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ChromeGate><Navbar /></ChromeGate>
         <main id="contenu" className="flex-1">{children}</main>
         <ChromeGate><Footer /></ChromeGate>
-        <StickyCta phone={phone} />
       </body>
     </html>
   )

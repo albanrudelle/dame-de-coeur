@@ -52,7 +52,7 @@ export default async function MariagesPage() {
         note="Ménoire · Corrèze"
       >
         <div className="hero-actions">
-          <Link className="button" href="/contact">Demander un devis <span aria-hidden="true">↗</span></Link>
+          <Link className="button" href="/contact">Demander un devis →</Link>
           <Link className="button button-outline" href="/espaces">Voir les espaces</Link>
         </div>
       </PageHero>
@@ -72,7 +72,7 @@ export default async function MariagesPage() {
                 </li>
               ))}
             </ol>
-            <Link className="button" href="/contact">Demander un devis <span aria-hidden="true">↗</span></Link>
+            <Link className="button" href="/contact">Demander un devis →</Link>
           </div>
           <div>
             <div className="panel">

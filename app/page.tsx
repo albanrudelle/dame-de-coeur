@@ -44,7 +44,7 @@ export default async function HomePage() {
               {h.texte ?? "Grande salle aux lustres en cristal, espace festif à piste LED encastrée et bar lounge : tout ce qu'il faut pour une célébration inoubliable, au même endroit."}
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/espaces">Découvrir nos espaces <span aria-hidden="true">↗</span></Link>
+              <Link className="button" href="/espaces">Découvrir nos espaces →</Link>
               <a className="button button-outline" href="#configurateur">Vérifier une date</a>
             </div>
             <div className="hero-meta">
@@ -63,7 +63,7 @@ export default async function HomePage() {
       {/* INTRO */}
       <section className="intro wrap" id="lieu">
         <div className="eyebrow" style={{ justifyContent: 'center' }}>Le Domaine</div>
-        <div className="intro-mark" aria-hidden="true">✳</div>
+        <div className="intro-mark" aria-hidden="true"></div>
         <h2>Un lieu, trois espaces,<br />votre histoire.</h2>
         <p className="lead">
           À Ménoire, le Domaine la Dame de Cœur réunit en un seul lieu tout ce dont vous avez besoin pour une célébration inoubliable : une grande salle parée de lustres en cristal, un espace festif avec piste LED encastrée et un bar lounge miroir. Les trois espaces sont réservés à votre seul événement, et chacun a été pensé pour offrir un cadre de prestige, à portée de tous.
@@ -87,7 +87,7 @@ export default async function HomePage() {
                 <div className="space-topline">{SPACE_LINES[i]}</div>
                 <h3>{e.titre}</h3>
                 <p>{e.cap}</p>
-                <span className="arrow-link">Explorer l&apos;espace ↗</span>
+                <span className="arrow-link">Explorer l&apos;espace →</span>
               </div>
             </Link>
           ))}
@@ -109,7 +109,7 @@ export default async function HomePage() {
               {INCLUS.map(l => <li key={l}>{l}</li>)}
             </ul>
             <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
-            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier ma date ↗</a></p>
+            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier ma date →</a></p>
           </div>
         </div>
       </section>
@@ -161,7 +161,7 @@ export default async function HomePage() {
             <h2>Parlons de votre événement.</h2>
             <p className="muted" style={{ margin: 0 }}>Disponibilités, visite du Domaine, devis personnalisé : notre équipe vous répond sous 24 heures.</p>
           </div>
-          <Link className="button" href="/contact">Demander un devis ↗</Link>
+          <Link className="button" href="/contact">Demander un devis →</Link>
         </div>
       </section>
     </div>

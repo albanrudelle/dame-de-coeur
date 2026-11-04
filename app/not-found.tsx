@@ -7,7 +7,7 @@ export default function NotFound() {
         <div className="eyebrow">Erreur 404</div>
         <h1>Cette page<br /><em>n&apos;existe pas.</em></h1>
         <p className="lead" style={{ marginBottom: 28 }}>Le lien est peut-être erroné ou la page a été déplacée.</p>
-        <Link className="button" href="/">Retour à l&apos;accueil <span aria-hidden="true">↗</span></Link>
+        <Link className="button" href="/">Retour à l&apos;accueil →</Link>
       </section>
     </div>
   )

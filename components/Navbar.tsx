@@ -54,11 +54,11 @@ export function Navbar() {
               </Link>
             ))}
             <Link href="/contact" className="button mobile-only" onClick={() => setOpen(false)}>
-              Demander un devis <span aria-hidden="true">↗</span>
+              Demander un devis →
             </Link>
           </div>
           <Link href="/contact" className="button">
-            Demander un devis <span aria-hidden="true">↗</span>
+            Demander un devis →
           </Link>
         </nav>
       </header>

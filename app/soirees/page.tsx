@@ -33,7 +33,7 @@ export default async function SoireesPage() {
         note="Piste LED · Régie lumière"
       >
         <div className="hero-actions">
-          <Link className="button" href="/contact">Demander un devis <span aria-hidden="true">↗</span></Link>
+          <Link className="button" href="/contact">Demander un devis →</Link>
         </div>
       </PageHero>
 
@@ -59,7 +59,7 @@ export default async function SoireesPage() {
                   {ev.tags.map(t => <span className="tag" key={t}>{t}</span>)}
                 </div>
                 <Link className="text-link" href={`/contact?type=${encodeURIComponent(ev.type)}`}>
-                  Faire une demande ↗
+                  Faire une demande →
                 </Link>
               </div>
             </article>

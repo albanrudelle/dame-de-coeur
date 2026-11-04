@@ -16,7 +16,7 @@ export function CtaBand({ eyebrow, title, text, label = 'Demander un devis' }: P
           <h2>{title}</h2>
           <p className="muted" style={{ margin: 0 }}>{text}</p>
         </div>
-        <Link className="button" href="/contact">{label} <span aria-hidden="true">↗</span></Link>
+        <Link className="button" href="/contact">{label} →</Link>
       </div>
     </section>
   )

@@ -39,7 +39,7 @@ export default async function EspacesPage() {
               <div className="tags">
                 {e.tags.map(t => <span className="tag" key={t}>{t}</span>)}
               </div>
-              <Link className="button" href="/contact">Vérifier les disponibilités <span aria-hidden="true">↗</span></Link>
+              <Link className="button" href="/contact">Vérifier les disponibilités →</Link>
             </div>
           </div>
           <div className="ideal">
@@ -73,7 +73,7 @@ export default async function EspacesPage() {
           <ul className="check-list">
             {['Accessible depuis Tulle, Brive, Ussel', 'Grand parking privatif sur site', 'Accès PMR · Plain-pied · Tout confort'].map(t => <li key={t}>{t}</li>)}
           </ul>
-          <Link className="button" href="/contact">Planifier une visite <span aria-hidden="true">↗</span></Link>
+          <Link className="button" href="/contact">Planifier une visite →</Link>
         </div>
       </div>
     </div>

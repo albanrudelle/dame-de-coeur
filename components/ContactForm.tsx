@@ -106,7 +106,7 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
   if (status === 'success') {
     return (
       <div className="success" role="status">
-        <div className="intro-mark" aria-hidden="true">✳</div>
+        <div className="intro-mark" aria-hidden="true"></div>
         <h2>Merci {sentName}, votre demande est bien partie.</h2>
         <p className="lead">Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.</p>
       </div>
@@ -163,7 +163,7 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
       </div>
 
       <button type="submit" className="button" style={{ width: '100%' }} disabled={status === 'loading'}>
-        {status === 'loading' ? 'Envoi en cours…' : <>Envoyer ma demande <span aria-hidden="true">↗</span></>}
+        {status === 'loading' ? 'Envoi en cours…' : <>Envoyer ma demande →</>}
       </button>
 
       <div aria-live="polite">
