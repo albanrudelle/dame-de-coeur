@@ -14,7 +14,33 @@ const LABELS: Record<string, string> = {
   message: 'Message',
 }
 
+// Limite par visiteur : 5 demandes par heure. Stockée en mémoire du serveur :
+// elle freine les envois en rafale mais n'est pas absolue (le serveur peut redémarrer).
+const WINDOW_MS = 60 * 60 * 1000
+const MAX_PER_WINDOW = 5
+const hits = new Map<string, number[]>()
+
+function tooMany(ip: string): boolean {
+  const now = Date.now()
+  if (hits.size > 5000) {
+    for (const [k, v] of hits) if (v.every(t => now - t > WINDOW_MS)) hits.delete(k)
+  }
+  const recent = (hits.get(ip) ?? []).filter(t => now - t < WINDOW_MS)
+  if (recent.length >= MAX_PER_WINDOW) {
+    hits.set(ip, recent)
+    return true
+  }
+  recent.push(now)
+  hits.set(ip, recent)
+  return false
+}
+
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'inconnu'
+  if (tooMany(ip)) {
+    return NextResponse.json({ error: 'Trop de demandes, réessayez plus tard' }, { status: 429 })
+  }
+
   let body: unknown
   try {
     body = await req.json()
