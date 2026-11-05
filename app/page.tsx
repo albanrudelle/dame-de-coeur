@@ -121,8 +121,8 @@ export default async function HomePage() {
         <div className="wrap config-wrap">
           <div>
             <div className="eyebrow" style={{ color: '#c8b18d' }}>Votre projet, notre Domaine</div>
-            <h2>Trouvez la formule<br />qui vous ressemble.</h2>
-            <p className="lead">Quelques informations suffisent pour explorer les possibilités. Vous pourrez ensuite nous transmettre votre demande et affiner votre projet avec notre équipe.</p>
+            <h2>Vérifiez la disponibilité<br />de votre date.</h2>
+            <p className="lead">Trois informations suffisent. Vous complétez ensuite votre demande et notre équipe revient vers vous avec les disponibilités et un devis.</p>
             <div style={{ marginTop: 32, borderTop: '1px solid rgba(255,255,255,.2)', paddingTop: 18, color: '#c4c9bd', fontSize: 11, maxWidth: 340 }}>
               Pas de réservation immédiate : votre demande permet de vérifier la disponibilité de votre date. Réponse sous 24 heures ouvrées.
             </div>

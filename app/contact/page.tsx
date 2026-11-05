@@ -19,6 +19,8 @@ export default async function ContactPage({ searchParams }: Props) {
   const typeParam = first(searchParams.type) ?? ''
   const dateParam = first(searchParams.date) ?? ''
   const defaultType = EVENT_TYPES.includes(typeParam) ? typeParam : ''
+  const guestsParam = first(searchParams.n) ?? ''
+  const defaultGuests = /^\d{1,3}$/.test(guestsParam) && Number(guestsParam) > 0 ? guestsParam : ''
   const defaultDate = /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : ''
 
   const [s, dispos, temoignages] = await Promise.all([getSettings(), getDisponibilites(), getTemoignages()])
@@ -49,7 +51,7 @@ export default async function ContactPage({ searchParams }: Props) {
         <div className="form-card">
           <h2>Votre demande</h2>
           <p className="muted" style={{ marginBottom: 26 }}>Réponse garantie sous 24h ouvrées · Sans engagement</p>
-          <ContactForm defaultType={defaultType} defaultDate={defaultDate} />
+          <ContactForm defaultType={defaultType} defaultDate={defaultDate} defaultGuests={defaultGuests} />
         </div>
 
         <aside className="aside">
