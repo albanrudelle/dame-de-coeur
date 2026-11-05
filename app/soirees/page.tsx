@@ -8,7 +8,7 @@ import { getEvenements, getPage } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Anniversaires, EVJF, EVG & soirées en Corrèze',
-  description: "Anniversaires, EVJF, EVG, séminaires et réveillons au Domaine la Dame de Cœur. Espace festif à piste LED, bar lounge, grande salle. Devis gratuit 24h.",
+  description: "Anniversaires, EVJF, EVG, séminaires et réveillons au Domaine la Dame de Cœur. Espace festif à piste LED, bar lounge, grande salle. Devis gratuit.",
 }
 
 // "type" correspond à une valeur de EVENT_TYPES (préremplit le formulaire de contact)
@@ -72,7 +72,7 @@ export default async function SoireesPage() {
       <CtaBand
         eyebrow="Chaque événement mérite un écrin"
         title={p.ctaTitre ?? 'Parlons de votre soirée.'}
-        text={p.ctaTexte ?? 'Contactez-nous pour vérifier les disponibilités et recevoir un devis sous 24h.'}
+        text={p.ctaTexte ?? 'Contactez-nous pour vérifier les disponibilités et recevoir un devis.'}
         label="Faire une demande"
       />
     </div>

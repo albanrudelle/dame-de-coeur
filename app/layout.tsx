@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: `${SITE.name} — Salle de réception, mariages & soirées en Corrèze`,
     template: `%s | ${SITE.name}`,
   },
-  description: "Domaine la Dame de Cœur à Ménoire (Corrèze) : grande salle de réception avec lustres en cristal, espace festif avec piste LED encastrée, bar lounge. Jusqu'à 150 convives. Mariages, anniversaires, EVJF. Devis gratuit sous 24h.",
+  description: "Domaine la Dame de Cœur à Ménoire (Corrèze) : grande salle de réception avec lustres en cristal, espace festif avec piste LED encastrée, bar lounge. Jusqu'à 150 convives. Mariages, anniversaires, EVJF. Devis gratuit.",
   keywords: ['salle mariage Corrèze', 'location salle réception 19', 'salle de fête Corrèze', 'salle de soirée Corrèze', 'EVJF Corrèze', 'salle mariage Tulle', 'domaine mariage Corrèze', 'espace événementiel Corrèze'],
   openGraph: {
     type: 'website',

@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { EVENT_TYPES } from '@/lib/constants'
+import { EVENT_TYPES, GUEST_RANGES } from '@/lib/constants'
 
 export function Configurator() {
   const router = useRouter()
@@ -12,7 +12,7 @@ export function Configurator() {
   function submit(e: React.FormEvent) {
     e.preventDefault()
     const q = new URLSearchParams({ type: eventType })
-    if (guests && Number(guests) > 0) q.set('n', guests)
+    if (guests) q.set('n', guests)
     if (date) q.set('date', date)
     router.push(`/contact?${q.toString()}`)
   }
@@ -28,14 +28,17 @@ export function Configurator() {
         </div>
         <div className="dc-field">
           <label htmlFor="guestCount">Nombre d&apos;invités <span className="muted" style={{ fontWeight: 400 }}>(approximatif)</span></label>
-          <input id="guestCount" type="number" inputMode="numeric" min={1} max={300} placeholder="Ex : 80" value={guests} onChange={e => setGuests(e.target.value)} />
+          <select id="guestCount" value={guests} onChange={e => setGuests(e.target.value)}>
+            <option value="">Sélectionner</option>
+            {GUEST_RANGES.map(o => <option key={o} value={o}>{o}</option>)}
+          </select>
         </div>
         <div className="dc-field">
           <label htmlFor="eventDate">Date souhaitée <span className="muted" style={{ fontWeight: 400 }}>(facultatif)</span></label>
           <input id="eventDate" type="date" value={date} onChange={e => setDate(e.target.value)} />
         </div>
         <div className="form-actions">
-          <small>Sans engagement. Réponse sous 24 heures ouvrées.</small>
+          <small>Sans engagement. Devis gratuit.</small>
           <button type="submit" className="button">Vérifier ma date →</button>
         </div>
       </form>

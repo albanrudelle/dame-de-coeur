@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
-import { SITE, EVENT_TYPES } from '@/lib/constants'
+import { SITE, EVENT_TYPES, GUEST_RANGES } from '@/lib/constants'
 import { formatJour, getDisponibilites, getSettings, getTemoignages } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Faire une demande — Disponibilités & devis',
-  description: 'Vérifiez la disponibilité de votre date et recevez un devis personnalisé sous 24h. Domaine la Dame de Cœur, Ménoire, Corrèze.',
+  description: 'Vérifiez la disponibilité de votre date et recevez un devis personnalisé. Domaine la Dame de Cœur, Ménoire, Corrèze.',
 }
 
 type Props = { searchParams: { [key: string]: string | string[] | undefined } }
@@ -20,7 +20,7 @@ export default async function ContactPage({ searchParams }: Props) {
   const dateParam = first(searchParams.date) ?? ''
   const defaultType = EVENT_TYPES.includes(typeParam) ? typeParam : ''
   const guestsParam = first(searchParams.n) ?? ''
-  const defaultGuests = /^\d{1,3}$/.test(guestsParam) && Number(guestsParam) > 0 ? guestsParam : ''
+  const defaultGuests = GUEST_RANGES.includes(guestsParam) ? guestsParam : ''
   const defaultDate = /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : ''
 
   const [s, dispos, temoignages] = await Promise.all([getSettings(), getDisponibilites(), getTemoignages()])
@@ -33,7 +33,6 @@ export default async function ContactPage({ searchParams }: Props) {
     ...(phoneOk ? ([['Téléphone', `${s.phone}\n${s.horaires}`]] as [string, string][]) : []),
     ['E-mail', s.email],
     ...(dispos.length ? ([['Prochaines dates libres', dispos.slice(0, 6).map(formatJour).join('\n')]] as [string, string][]) : []),
-    ['Réponse', 'Sous 24 heures ouvrées'],
     ['Visites', 'Sur rendez-vous · 7j/7\nGratuit et sans engagement'],
   ]
 
@@ -43,14 +42,14 @@ export default async function ContactPage({ searchParams }: Props) {
         <div className="eyebrow">Disponibilités &amp; devis</div>
         <h1>Faire une <em>demande</em></h1>
         <p className="lead">
-          Complétez le formulaire : un membre de notre équipe revient vers vous sous 24 heures ouvrées avec les disponibilités et un devis personnalisé.
+          Complétez le formulaire : un membre de notre équipe revient vers vous dans les meilleurs délais avec les disponibilités et un devis personnalisé.
         </p>
       </section>
 
       <div className="wrap contact-grid">
         <div className="form-card">
           <h2>Votre demande</h2>
-          <p className="muted" style={{ marginBottom: 26 }}>Réponse garantie sous 24h ouvrées · Sans engagement</p>
+          <p className="muted" style={{ marginBottom: 26 }}>Sans engagement · Devis gratuit</p>
           <ContactForm defaultType={defaultType} defaultDate={defaultDate} defaultGuests={defaultGuests} />
         </div>
 

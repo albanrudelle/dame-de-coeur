@@ -9,7 +9,7 @@ import { Faq } from '@/components/dc/Faq'
 
 export const metadata: Metadata = {
   title: 'Salle de mariage en Corrèze — Ménoire',
-  description: "Organisez votre mariage au Domaine la Dame de Cœur à Ménoire. Grande salle 150 convives, espace festif avec piste LED, bar lounge. Devis gratuit sous 24h.",
+  description: "Organisez votre mariage au Domaine la Dame de Cœur à Ménoire. Grande salle 150 convives, espace festif avec piste LED, bar lounge. Devis gratuit.",
 }
 
 const PARCOURS = [
@@ -82,7 +82,7 @@ export default async function MariagesPage() {
               </ul>
             </div>
             <div className="price-note">
-              Location du Domaine : de <strong>{prix}</strong> selon la date et les options. Devis personnalisé sous 24h.
+              Location du Domaine : de <strong>{prix}</strong> selon la date et les options. Devis personnalisé.
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default async function MariagesPage() {
       <CtaBand
         eyebrow="Votre date est peut-être encore disponible"
         title={p.ctaTitre ?? 'Vérifions ensemble votre date.'}
-        text={p.ctaTexte ?? 'Les samedis de juin à octobre sont les premiers réservés. Aucun engagement, réponse sous 24h.'}
+        text={p.ctaTexte ?? 'Les samedis de juin à octobre sont les premiers réservés. Aucun engagement.'}
         label="Vérifier les disponibilités"
       />
     </div>

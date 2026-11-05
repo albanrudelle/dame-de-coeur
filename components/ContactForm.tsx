@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent, type ReactNode } from 'react'
 import { contactSchema } from '@/lib/schemas'
-import { EVENT_TYPES } from '@/lib/constants'
+import { EVENT_TYPES, GUEST_RANGES } from '@/lib/constants'
 
 type Values = {
   prenom: string
@@ -131,7 +131,7 @@ export default function ContactForm({ defaultType = '', defaultDate = '', defaul
       <div className="success" role="status">
         <div className="intro-mark" aria-hidden="true"></div>
         <h2>Merci {sentName}, votre demande est bien partie.</h2>
-        <p className="lead">Notre équipe vérifie votre date et vous répond sous 24 heures ouvrées.</p>
+        <p className="lead">Notre équipe vérifie votre date et vous répond dans les meilleurs délais.</p>
       </div>
     )
   }
@@ -169,8 +169,11 @@ export default function ContactForm({ defaultType = '', defaultDate = '', defaul
       </div>
 
       <div className="field-row">
-        <Field id="nombrePersonnes" label="Nombre de personnes" error={errors.nombrePersonnes}>
-          <input id="nombrePersonnes" name="nombrePersonnes" type="number" inputMode="numeric" min={1} max={300} placeholder="Ex : 80" value={values.nombrePersonnes} onChange={onChange} {...a11y('nombrePersonnes')} />
+        <Field id="nombrePersonnes" label="Nombre d'invités" error={errors.nombrePersonnes}>
+          <select id="nombrePersonnes" name="nombrePersonnes" value={values.nombrePersonnes} onChange={onChange} {...a11y('nombrePersonnes')}>
+            <option value="">Sélectionner</option>
+            {GUEST_RANGES.map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
         </Field>
       </div>
 
