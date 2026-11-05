@@ -92,6 +92,13 @@ export const ESPACES = [
   },
 ]
 
+export const GUEST_RANGES = [
+  'Moins de 50 personnes',
+  '50 à 100 personnes',
+  '100 à 150 personnes',
+  'Plus de 150 personnes',
+]
+
 export const EVENT_TYPES = [
   'Mariage',
   'Anniversaire',

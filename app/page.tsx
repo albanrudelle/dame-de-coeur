@@ -108,7 +108,7 @@ export default async function HomePage() {
             <ul className="check-list">
               {INCLUS.map(l => <li key={l}>{l}</li>)}
             </ul>
-            <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit sous 24h.</div>
+            <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit.</div>
             <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier une disponibilité →</a></p>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default async function HomePage() {
             <h2>Vérifiez la disponibilité<br />de votre date.</h2>
             <p className="lead">Trois informations suffisent. Vous complétez ensuite votre demande et notre équipe revient vers vous avec les disponibilités et un devis.</p>
             <div style={{ marginTop: 32, borderTop: '1px solid rgba(255,255,255,.2)', paddingTop: 18, color: '#c4c9bd', fontSize: 11, maxWidth: 340 }}>
-              Pas de réservation immédiate : votre demande permet de vérifier la disponibilité de votre date. Réponse sous 24 heures ouvrées.
+              Pas de réservation immédiate : votre demande permet de vérifier la disponibilité de votre date. Nous vous répondons dans les meilleurs délais.
             </div>
           </div>
           <Configurator />
@@ -159,7 +159,7 @@ export default async function HomePage() {
           <div>
             <div className="eyebrow">Une date, une question ?</div>
             <h2>Parlons de votre événement.</h2>
-            <p className="muted" style={{ margin: 0 }}>Disponibilités, visite du Domaine, devis personnalisé : notre équipe vous répond sous 24 heures.</p>
+            <p className="muted" style={{ margin: 0 }}>Disponibilités, visite du Domaine, devis personnalisé : notre équipe vous répond dans les meilleurs délais.</p>
           </div>
           <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
         </div>

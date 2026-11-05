@@ -8,7 +8,7 @@ export const contactSchema = z.object({
   typeEvenement:   z.string().min(1, 'Veuillez sélectionner').max(80),
   espace:          z.string().max(80).optional(),
   date:            z.string().min(1, 'Date requise').max(20),
-  nombrePersonnes: z.string().min(1, 'Requis').max(6).refine(v => Number(v) > 0, 'Invalide'),
+  nombrePersonnes: z.string().min(1, 'Veuillez sélectionner').max(40),
   message:         z.string().max(4000).optional(),
 })
 
