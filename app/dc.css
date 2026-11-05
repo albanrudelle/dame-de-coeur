@@ -449,3 +449,11 @@ html{-webkit-text-size-adjust:100%}
 @media(max-width:680px){.dc .hero-copy h1{font-size:clamp(32px,8.6vw,44px)}}
 .dc .hero-actions{margin:28px 0 38px;gap:14px}
 .dc .intro-mark{margin:18px auto 26px}
+
+/* Logo : en-tête (clair) et pied de page (inversé en blanc sur fond sombre) */
+.dc .brand{display:block;line-height:0}
+.dc .brand-logo{display:block;height:68px;width:auto}
+.dc .nav{height:92px}
+.dc .footer .brand-logo{height:150px;filter:invert(1);opacity:.92}
+@media(max-width:680px){.dc .nav{height:72px}.dc .nav-links{top:72px}.dc .brand-logo{height:54px}.dc .footer .brand-logo{height:130px}}
+.dc [id]{scroll-margin-top:108px}

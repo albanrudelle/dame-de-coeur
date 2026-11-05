@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -29,9 +30,8 @@ export function Navbar() {
     <div className="dc" style={{ display: 'contents' }}>
       <header className="site-header">
         <nav className="nav" aria-label="Navigation principale">
-          <Link className="brand" href="/" onClick={() => setOpen(false)}>
-            {SITE.name}
-            <small>{SITE.location}</small>
+          <Link className="brand" href="/" onClick={() => setOpen(false)} aria-label={`${SITE.name} — accueil`}>
+            <Image className="brand-logo" src="/logo.svg" alt={SITE.name} width={843} height={704} priority unoptimized />
           </Link>
           <button
             className="menu-toggle"
