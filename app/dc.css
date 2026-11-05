@@ -260,8 +260,9 @@
 .dc .aside-img{position:relative;height:200px;overflow:hidden;background:#d7d0c4}
 .dc .aside-img img{object-fit:cover}
 .dc .aside h3{font-size:26px;margin:0}
-.dc .info-row{border-bottom:1px solid var(--line);padding:0 0 14px}
-.dc .info-row:last-of-type{border-bottom:0}
+.dc .info-row{border-bottom:1px solid var(--line);padding:0 0 18px}
+.dc .info-row+.info-row{padding-top:18px}
+.dc .info-row:last-of-type{border-bottom:0;padding-bottom:6px}
 .dc .info-row b{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 .dc .info-row span{white-space:pre-line;font-size:14px}
 .dc .aside-quote{border-top:1px solid var(--line);padding-top:20px}

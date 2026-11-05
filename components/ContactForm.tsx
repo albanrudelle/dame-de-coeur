@@ -25,6 +25,22 @@ function localToday() {
   return `${d.getFullYear()}-${m}-${day}`
 }
 
+// Masque du téléphone : "06 31 89 80 94" (ou "+33 6 31 89 80 94" pour un numéro international)
+function formatPhone(raw: string) {
+  const intl = raw.trim().startsWith('+')
+  const digits = raw.replace(/\D/g, '')
+  if (intl) {
+    const d = digits.slice(0, 11)
+    if (d.startsWith('33')) {
+      const rest = d.slice(2)
+      const parts = [rest.slice(0, 1), ...(rest.slice(1).match(/.{1,2}/g) ?? [])].filter(Boolean)
+      return ['+33', ...parts].join(' ')
+    }
+    return '+' + d
+  }
+  return (digits.slice(0, 10).match(/.{1,2}/g) ?? []).join(' ')
+}
+
 function Field({ id, label, error, optional, children }: {
   id: string
   label: string
@@ -44,13 +60,14 @@ function Field({ id, label, error, optional, children }: {
   )
 }
 
-export default function ContactForm({ defaultType = '', defaultDate = '' }: {
+export default function ContactForm({ defaultType = '', defaultDate = '', defaultGuests = '' }: {
   defaultType?: string
   defaultDate?: string
+  defaultGuests?: string
 }) {
   const [values, setValues] = useState<Values>({
     prenom: '', nom: '', email: '', telephone: '',
-    typeEvenement: defaultType, date: defaultDate, nombrePersonnes: '',
+    typeEvenement: defaultType, date: defaultDate, nombrePersonnes: defaultGuests,
     message: '', website: '',
   })
   const [errors, setErrors] = useState<Errors>({})
@@ -58,7 +75,8 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
   const [sentName, setSentName] = useState('')
 
   function onChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    const { name, value } = e.target
+    const { name } = e.target
+    const value = name === 'telephone' ? formatPhone(e.target.value) : e.target.value
     setValues(prev => ({ ...prev, [name]: value }))
     setErrors(prev => ({ ...prev, [name]: undefined }))
   }
@@ -79,6 +97,11 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
         const key = String(issue.path[0]) as keyof Values
         if (!next[key]) next[key] = issue.message
       }
+    }
+    if (values.telephone) {
+      const n = values.telephone.replace(/\D/g, '').length
+      const ok = values.telephone.startsWith('+') ? n >= 9 : n === 10
+      if (!ok) next.telephone = 'Numéro incomplet (10 chiffres)'
     }
     if (!next.date && values.date && values.date < localToday()) {
       next.date = 'Cette date est déjà passée'
@@ -129,7 +152,7 @@ export default function ContactForm({ defaultType = '', defaultDate = '' }: {
           <input id="email" name="email" type="email" autoComplete="email" placeholder="vous@exemple.fr" value={values.email} onChange={onChange} {...a11y('email')} />
         </Field>
         <Field id="telephone" label="Téléphone" optional error={errors.telephone}>
-          <input id="telephone" name="telephone" type="tel" autoComplete="tel" placeholder="06 00 00 00 00" value={values.telephone} onChange={onChange} {...a11y('telephone')} />
+          <input id="telephone" name="telephone" type="tel" inputMode="tel" maxLength={17} autoComplete="tel" placeholder="06 00 00 00 00" value={values.telephone} onChange={onChange} {...a11y('telephone')} />
         </Field>
       </div>
 
