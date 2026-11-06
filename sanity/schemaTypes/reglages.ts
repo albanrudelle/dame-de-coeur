@@ -20,6 +20,13 @@ export const reglages = defineType({
       group: 'logo',
       description: "Affiché en haut de chaque page. Format SVG ou PNG sur fond transparent, texte foncé (l'en-tête est clair). Laissez vide pour garder le logo actuel.",
     }),
+    defineField({
+      name: 'logoPied',
+      title: 'Logo du pied de page',
+      type: 'image',
+      group: 'logo',
+      description: "Affiché en bas de chaque page, sur fond vert foncé : prévoyez une version claire (blanche ou crème), SVG ou PNG sur fond transparent. Laissez vide pour afficher le nom du domaine en texte.",
+    }),
 
     // ── Coordonnées
     defineField({name: 'telephone', title: 'Téléphone', type: 'string', group: 'contact'}),

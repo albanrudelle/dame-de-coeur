@@ -37,10 +37,17 @@ export async function Footer() {
         <div className="wrap">
           <div className="footer-top">
             <div>
-              <Link className="brand" href="/">
-                {SITE.name}
-                <small>{SITE.location}</small>
-              </Link>
+              {s.logoPied ? (
+                <Link className="brand brand-logo" href="/" aria-label={`${SITE.name}, accueil`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={s.logoPied} alt={SITE.name} width={234} height={54} loading="lazy" />
+                </Link>
+              ) : (
+                <Link className="brand" href="/">
+                  {SITE.name}
+                  <small>{SITE.location}</small>
+                </Link>
+              )}
               <p style={{ maxWidth: 300, marginTop: 18 }}>
                 Complexe événementiel à Ménoire, Corrèze. Grande salle de réception, espace festif à piste LED et bar lounge. Le Domaine se loue dans son ensemble.
               </p>

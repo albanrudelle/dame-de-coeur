@@ -30,6 +30,7 @@ const img = (i: SanityImg, w: number) => (i?.asset ? urlFor(i as never).width(w)
 
 type RawSettings = {
   logo?: SanityImg
+  logoPied?: SanityImg
   telephone?: string; email?: string; adresse?: string; horaires?: string
   heroTitreHaut?: string; heroTitreItalique?: string; heroTexte?: string; heroImage?: SanityImg
   galerie?: SanityImg[]
@@ -43,6 +44,8 @@ export async function getSettings() {
   return {
     // Logo : celui du studio s'il existe, sinon le fichier du site (public/images/logo.svg)
     logo: s.logo?.asset ? urlFor(s.logo as never).url() : '/images/logo.svg',
+    // Logo du pied de page (fond sombre) : uniquement s'il est renseigné dans le studio
+    logoPied: s.logoPied?.asset ? urlFor(s.logoPied as never).url() : undefined,
     phone,
     phoneOk: !/x/i.test(phone),
     email: clean(s.email) ?? SITE.email,
