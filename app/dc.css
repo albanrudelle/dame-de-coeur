@@ -449,3 +449,7 @@ html{-webkit-text-size-adjust:100%}
 @media(max-width:680px){.dc .hero-copy h1{font-size:clamp(32px,8.6vw,44px)}}
 .dc .hero-actions{margin:28px 0 38px;gap:14px}
 .dc .intro-mark{margin:18px auto 26px}
+/* Logo de l'en-tête */
+.dc .brand-logo{display:flex;align-items:center}
+.dc .brand-logo img{display:block;height:54px;width:auto;max-width:100%}
+@media(max-width:680px){.dc .brand-logo img{height:42px}}
