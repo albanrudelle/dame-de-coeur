@@ -31,6 +31,20 @@ const page = (name: string, title: string, extra: ReturnType<typeof defineField>
 export const pageMariages = page('pageMariages', 'Page Mariages', [
   liste('inclus', 'Liste « tout est inclus »', 'Une ligne par élément. Laissez vide pour garder la liste actuelle.'),
   defineField({name: 'prix', title: 'Fourchette de prix', type: 'string', description: 'Ex : 1 800 € à 3 500 €. Utilisée aussi sur la page Espaces.'}),
+  image('imageBandeau', 'Grande photo pleine largeur', 'Photo large sous la liste « tout est inclus ». Laissez vide pour garder la photo actuelle.'),
+  defineField({
+    name: 'galerie',
+    title: 'Galerie photos (page Mariages)',
+    type: 'array',
+    description: "Jusqu'à 4 photos. Les photos actuelles complètent s'il y en a moins de 4.",
+    of: [
+      defineArrayMember({
+        type: 'image',
+        options: {hotspot: true},
+        fields: [defineField({name: 'alt', title: 'Description de la photo (accessibilité)', type: 'string'})],
+      }),
+    ],
+  }),
 ])
 export const pageSoirees = page('pageSoirees', 'Page Soirées & événements')
 export const pageEspaces = page('pageEspaces', 'Page Espaces', [

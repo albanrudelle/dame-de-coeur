@@ -99,7 +99,7 @@ export default async function HomePage() {
       <section className="section section-tone">
         <div className="wrap combo">
           <div className="combo-visual">
-            <Image src="/images/piste2.jpg" alt="Piste de danse et bar de l'espace festif" width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
+            <Image src={s.equipements.image ?? '/images/piste2.jpg'} alt={s.equipements.alt ?? "Piste de danse et bar de l'espace festif"} width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
             <div className="plan-caption"><span>La piste et le bar de l'espace festif</span><span>Tout est déjà en place</span></div>
           </div>
           <div>

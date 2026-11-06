@@ -41,6 +41,7 @@ export default async function MariagesPage() {
   const p = await getPage('pageMariages')
   const prix = await getPrix()
   const inclus = p.inclus ?? INCLUS
+  const galerie = [...p.galerie, ...GALERIE.slice(p.galerie.length).map(g => ({ src: `/images/${g.img}.jpg`, alt: g.alt }))].slice(0, 4)
   return (
     <div className="dc">
       <PageHero
@@ -89,14 +90,14 @@ export default async function MariagesPage() {
       </section>
 
       <div className="photo-band">
-        <Image src="/images/table-longue.jpg" alt="Longue table de banquet dressée pour un mariage" fill sizes="100vw" />
+        <Image src={p.imageBandeau ?? '/images/table-longue.jpg'} alt={p.altBandeau ?? 'Longue table de banquet dressée pour un mariage'} fill sizes="100vw" />
       </div>
 
       <section className="section wrap" style={{ paddingTop: 0 }}>
         <div className="strip">
-          {GALERIE.map(g => (
-            <div key={g.img}>
-              <Image src={`/images/${g.img}.jpg`} alt={g.alt} fill sizes="(max-width: 900px) 50vw, 25vw" />
+          {galerie.map(g => (
+            <div key={g.src}>
+              <Image src={g.src} alt={g.alt} fill sizes="(max-width: 900px) 50vw, 25vw" />
             </div>
           ))}
         </div>

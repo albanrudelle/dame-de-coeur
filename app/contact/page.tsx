@@ -55,7 +55,7 @@ export default async function ContactPage({ searchParams }: Props) {
 
         <aside className="aside">
           <div className="aside-img">
-            <Image src="/images/salle-lustres.jpg" alt="Le Domaine la Dame de Cœur" fill sizes="(max-width: 900px) 100vw, 380px" />
+            <Image src={s.contact.image ?? '/images/salle-lustres.jpg'} alt={s.contact.alt ?? 'Le Domaine la Dame de Cœur'} fill sizes="(max-width: 900px) 100vw, 380px" />
           </div>
           <h3>{SITE.name}</h3>
           <div>
