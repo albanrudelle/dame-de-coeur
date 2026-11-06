@@ -47,7 +47,10 @@
 .dc .space-card:first-child{grid-row:span 2}
 .dc .space-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .65s}
 .dc .space-card:hover img{transform:scale(1.04)}
-.dc .space-card:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,14,11,.9) 0%,rgba(10,14,11,.72) 34%,rgba(10,14,11,.28) 62%,rgba(10,14,11,.12) 100%)}
+.dc .space-card:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,14,11,.86) 0%,rgba(10,14,11,.68) 30%,rgba(10,14,11,.32) 55%,rgba(10,14,11,0) 82%);transition:opacity .4s}
+.dc .space-card .arrow-link{transition:gap .3s}
+.dc .space-card:hover .arrow-link,.dc .space-card:focus-visible .arrow-link{gap:18px}
+.dc .spaces-note{margin:18px 0 0;text-align:center;font-size:14px;color:#5b5a52}
 .dc .space-content{position:absolute;z-index:1;bottom:25px;left:28px;right:28px}
 .dc .space-content{text-shadow:0 1px 10px rgba(0,0,0,.55)}
 .dc .space-content h3{font-size:30px;margin:6px 0;color:#fff}
