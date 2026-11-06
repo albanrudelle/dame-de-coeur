@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="flex flex-col min-h-screen">
         <ChromeGate><a href="#contenu" className="skip-link">Aller au contenu</a></ChromeGate>
-        <ChromeGate><Navbar /></ChromeGate>
+        <ChromeGate><Navbar logo={s.logo} /></ChromeGate>
         <main id="contenu" className="flex-1">{children}</main>
         <ChromeGate><Footer /></ChromeGate>
       </body>

@@ -5,12 +5,22 @@ export const reglages = defineType({
   title: 'Réglages du site',
   type: 'document',
   groups: [
+    {name: 'logo', title: 'Logo'},
     {name: 'contact', title: 'Coordonnées'},
     {name: 'accueil', title: "Page d'accueil"},
     {name: 'chiffres', title: 'Chiffres clés'},
     {name: 'legal', title: 'Mentions légales'},
   ],
   fields: [
+    // ── Logo
+    defineField({
+      name: 'logo',
+      title: 'Logo du site',
+      type: 'image',
+      group: 'logo',
+      description: "Affiché en haut de chaque page. Format SVG ou PNG sur fond transparent, texte foncé (l'en-tête est clair). Laissez vide pour garder le logo actuel.",
+    }),
+
     // ── Coordonnées
     defineField({name: 'telephone', title: 'Téléphone', type: 'string', group: 'contact'}),
     defineField({name: 'email', title: 'E-mail affiché sur le site', type: 'string', group: 'contact', validation: (Rule) => Rule.email()}),

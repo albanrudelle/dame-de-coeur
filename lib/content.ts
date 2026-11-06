@@ -29,6 +29,7 @@ type SanityImg = { asset?: { _ref?: string }; alt?: string } | null | undefined
 const img = (i: SanityImg, w: number) => (i?.asset ? urlFor(i as never).width(w).auto('format').url() : undefined)
 
 type RawSettings = {
+  logo?: SanityImg
   telephone?: string; email?: string; adresse?: string; horaires?: string
   heroTitreHaut?: string; heroTitreItalique?: string; heroTexte?: string; heroImage?: SanityImg
   galerie?: SanityImg[]
@@ -40,6 +41,8 @@ export async function getSettings() {
   const s = (await safeFetch<RawSettings>(`*[_id == "reglages"][0]`)) ?? {}
   const phone = clean(s.telephone) ?? SITE.phone
   return {
+    // Logo : celui du studio s'il existe, sinon le fichier du site (public/images/logo.svg)
+    logo: s.logo?.asset ? urlFor(s.logo as never).url() : '/images/logo.svg',
     phone,
     phoneOk: !/x/i.test(phone),
     email: clean(s.email) ?? SITE.email,

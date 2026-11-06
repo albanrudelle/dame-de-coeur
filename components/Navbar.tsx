@@ -11,7 +11,7 @@ const LINKS = [
   { href: '/espaces',  label: 'Les Espaces' },
 ]
 
-export function Navbar() {
+export function Navbar({ logo }: { logo: string }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 
@@ -29,9 +29,9 @@ export function Navbar() {
     <div className="dc" style={{ display: 'contents' }}>
       <header className="site-header">
         <nav className="nav" aria-label="Navigation principale">
-          <Link className="brand" href="/" onClick={() => setOpen(false)}>
-            {SITE.name}
-            <small>{SITE.location}</small>
+          <Link className="brand brand-logo" href="/" aria-label={`${SITE.name}, accueil`} onClick={() => setOpen(false)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={logo} alt={SITE.name} width={234} height={54} />
           </Link>
           <button
             className="menu-toggle"
