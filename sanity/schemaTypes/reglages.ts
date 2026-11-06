@@ -75,6 +75,26 @@ export const reglages = defineType({
     defineField({name: 'siret', title: 'SIRET', type: 'string', group: 'legal'}),
     defineField({name: 'directeurPublication', title: 'Directeur de la publication', type: 'string', group: 'legal'}),
     defineField({name: 'adresseSiege', title: 'Adresse du siège', type: 'string', group: 'legal'}),
+
+    // ── Photos supplémentaires
+    defineField({
+      name: 'imageEquipements',
+      title: 'Photo « Ce qui est inclus » (accueil)',
+      type: 'image',
+      group: 'accueil',
+      options: {hotspot: true},
+      description: 'Photo à côté de la liste des équipements inclus. Laissez vide pour garder la photo actuelle.',
+      fields: [defineField({name: 'alt', title: 'Description de la photo (accessibilité)', type: 'string'})],
+    }),
+    defineField({
+      name: 'imageContact',
+      title: 'Photo de la page Contact',
+      type: 'image',
+      group: 'contact',
+      options: {hotspot: true},
+      description: 'Photo affichée à côté du formulaire de demande. Laissez vide pour garder la photo actuelle.',
+      fields: [defineField({name: 'alt', title: 'Description de la photo (accessibilité)', type: 'string'})],
+    }),
   ],
   preview: {prepare: () => ({title: 'Réglages du site'})},
 })

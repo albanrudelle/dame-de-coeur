@@ -36,6 +36,7 @@ type RawSettings = {
   galerie?: SanityImg[]
   capaciteMax?: string; evenements?: string; noteGoogle?: string; nombreAvis?: string
   raisonSociale?: string; formeJuridique?: string; capitalSocial?: string; siret?: string; directeurPublication?: string; adresseSiege?: string
+  imageEquipements?: SanityImg; imageContact?: SanityImg
 }
 
 export async function getSettings() {
@@ -75,6 +76,8 @@ export async function getSettings() {
       directeur: clean(s.directeurPublication),
       siege: clean(s.adresseSiege),
     },
+    equipements: { image: img(s.imageEquipements, 1200), alt: clean(s.imageEquipements?.alt) },
+    contact: { image: img(s.imageContact, 800), alt: clean(s.imageContact?.alt) },
   }
 }
 
@@ -115,6 +118,7 @@ type RawPage = {
   titreHaut?: string; titreItalique?: string; intro?: string; image?: SanityImg
   ctaTitre?: string; ctaTexte?: string
   inclus?: string[]; prix?: string; texteDomaine?: string; imageDomaine?: SanityImg
+  imageBandeau?: SanityImg; galerie?: SanityImg[]
 }
 
 export async function getPage(id: 'pageMariages' | 'pageSoirees' | 'pageEspaces') {
@@ -133,6 +137,11 @@ export async function getPage(id: 'pageMariages' | 'pageSoirees' | 'pageEspaces'
     texteDomaine: clean(p.texteDomaine),
     imageDomaine: img(p.imageDomaine, 1400),
     altDomaine: clean(p.imageDomaine?.alt),
+    imageBandeau: img(p.imageBandeau, 2000),
+    altBandeau: clean(p.imageBandeau?.alt),
+    galerie: (p.galerie ?? [])
+      .map(g => ({ src: img(g, 1000), alt: clean(g?.alt) ?? 'Photo du Domaine' }))
+      .filter((g): g is { src: string; alt: string } => !!g.src),
   }
 }
 
