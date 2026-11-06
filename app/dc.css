@@ -37,7 +37,7 @@
 .dc .hero-image img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
 .dc .image-note{position:absolute;bottom:22px;right:22px;background:rgba(245,242,236,.92);padding:9px 13px;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
 .dc .intro{padding-block:88px 78px;text-align:center}
-.dc .intro .lead{margin:0 auto}
+.dc .intro .lead{margin:0 auto;max-width:660px;line-height:1.7;color:#565b52;text-wrap:balance}
 .dc .intro-mark{font-family:var(--serif);font-size:46px;color:var(--gold);margin:14px 0 8px}
 .dc .section{padding-block:75px}
 .dc .section-head{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:34px}
