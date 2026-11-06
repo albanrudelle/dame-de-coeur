@@ -66,7 +66,7 @@ export default async function HomePage() {
         <div className="intro-mark" aria-hidden="true"></div>
         <h2>Trois espaces,<br />un seul événement : le vôtre.</h2>
         <p className="lead">
-          À Ménoire, le Domaine la Dame de Cœur réunit une grande salle parée de lustres en cristal pour le repas, un espace festif avec piste LED encastrée pour la soirée et un bar lounge miroir pour l'accueil et les cocktails. Le Domaine est loué dans son ensemble : vos invités passent d'une ambiance à l'autre sans quitter les lieux.
+          À Ménoire, le Domaine la Dame de Cœur réunit une grande salle aux lustres en cristal pour le repas, un espace festif avec piste LED pour la soirée et un bar lounge pour l'accueil et les cocktails. Le Domaine est loué dans son ensemble.
         </p>
       </section>
 
