@@ -92,6 +92,7 @@ export default async function HomePage() {
             </Link>
           ))}
         </div>
+        <p className="spaces-note">Les trois espaces sont réunis dans une seule location : le Domaine est à vous en entier.</p>
       </section>
 
       {/* CLÉ EN MAIN */}
