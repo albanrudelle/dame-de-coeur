@@ -1,3 +1,6 @@
+import { getFaq } from '@/lib/content'
+
+// Textes par défaut : utilisés tant qu'aucune question n'est créée dans le studio.
 const ITEMS: [string, string][] = [
   ['Combien de personnes pouvez-vous accueillir ?', "La grande salle reçoit jusqu'à 150 convives en banquet. Le Domaine est loué dans son ensemble : grande salle, espace festif et petite salle avec bar lounge sont à vous pour toute la durée de votre événement."],
   ['Que comprend la location ?', "Le bar professionnel, le son et la lumière (régie LED, lasers, boule à facettes), les tables, chaises et vaisselle, la climatisation, l'accès PMR et le parking privatif sont inclus. Une décoration thématique est possible en option."],
@@ -11,8 +14,9 @@ const ITEMS: [string, string][] = [
   ['Quel est le budget à prévoir ?', "La location du Domaine démarre autour de {prix} selon la date et les options. Le devis est gratuit et sans engagement."],
 ]
 
-export function Faq({ prix }: { prix: string }) {
-  const items = ITEMS.map(([q, a]) => [q, a.replace('{prix}', prix)] as [string, string])
+export async function Faq({ prix }: { prix: string }) {
+  const source = (await getFaq()) ?? ITEMS
+  const items = source.map(([q, a]) => [q, a.replace('{prix}', prix)] as [string, string])
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

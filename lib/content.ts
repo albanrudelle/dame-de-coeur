@@ -34,6 +34,7 @@ type RawSettings = {
   telephone?: string; email?: string; adresse?: string; horaires?: string
   heroTitreHaut?: string; heroTitreItalique?: string; heroTexte?: string; heroImage?: SanityImg
   galerie?: SanityImg[]
+  inclus?: string[]
   capaciteMax?: string; evenements?: string; noteGoogle?: string; nombreAvis?: string
   raisonSociale?: string; formeJuridique?: string; capitalSocial?: string; siret?: string; directeurPublication?: string; adresseSiege?: string
 }
@@ -58,6 +59,7 @@ export async function getSettings() {
       image: img(s.heroImage, 1600),
       alt: clean(s.heroImage?.alt),
     },
+    inclus: strs(s.inclus),
     galerie: (s.galerie ?? [])
       .map(g => ({ src: img(g, 1200), alt: clean(g?.alt) ?? 'Photo du Domaine' }))
       .filter((g): g is { src: string; alt: string } => !!g.src),
@@ -93,6 +95,14 @@ export async function getTemoignages(): Promise<Testimonial[]> {
       event: r.evenement ?? '',
     }))
   return list.length ? list : TEMOIGNAGES.map(({ stars, quote, author, event }) => ({ stars, quote, author, event }))
+}
+
+export async function getFaq(): Promise<[string, string][] | null> {
+  const rows = await safeFetch<{ question?: string; reponse?: string }[]>(
+    `*[_type == "faq" && publie != false] | order(ordre asc, _createdAt asc)`,
+  )
+  const list = (rows ?? []).filter(r => r.question?.trim() && r.reponse?.trim())
+  return list.length ? list.map(r => [r.question!.trim(), r.reponse!.trim()] as [string, string]) : null
 }
 
 export async function getDisponibilites(): Promise<string[]> {
@@ -136,7 +146,7 @@ export async function getPage(id: 'pageMariages' | 'pageSoirees' | 'pageEspaces'
   }
 }
 
-const strs = (a?: string[]) => {
+function strs(a?: string[]) {
   const l = (a ?? []).map(x => x?.trim()).filter(Boolean)
   return l.length ? l : undefined
 }

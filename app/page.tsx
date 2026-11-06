@@ -106,7 +106,7 @@ export default async function HomePage() {
             <h2>Ce qui est inclus<br />dans la location.</h2>
             <p className="lead">L&apos;essentiel est déjà installé, pour que vous puissiez vous concentrer sur vos invités. En option : une décoration thématique selon vos couleurs.</p>
             <ul className="check-list">
-              {INCLUS.map(l => <li key={l}>{l}</li>)}
+              {(s.inclus ?? INCLUS).map(l => <li key={l}>{l}</li>)}
             </ul>
             <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit.</div>
             <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier une disponibilité →</a></p>
