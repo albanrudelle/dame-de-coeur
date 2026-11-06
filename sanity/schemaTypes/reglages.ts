@@ -62,6 +62,15 @@ export const reglages = defineType({
       ],
     }),
 
+    defineField({
+      name: 'inclus',
+      title: '« Ce qui est inclus dans la location » (accueil)',
+      type: 'array',
+      group: 'accueil',
+      of: [defineArrayMember({type: 'string'})],
+      description: 'Une ligne par élément inclus. Laissez vide pour garder la liste actuelle.',
+    }),
+
     // ── Chiffres clés
     defineField({name: 'capaciteMax', title: 'Convives maximum', type: 'string', group: 'chiffres', description: 'Ex : 150'}),
     defineField({name: 'evenements', title: 'Événements réussis', type: 'string', group: 'chiffres', description: 'Ex : +200'}),

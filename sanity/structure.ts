@@ -17,5 +17,6 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('espace').title('Les 3 espaces'),
       S.documentTypeListItem('evenement').title('Cartes Soirées'),
       S.documentTypeListItem('temoignage').title('Témoignages'),
+      S.documentTypeListItem('faq').title('Questions fréquentes (FAQ)'),
       S.documentTypeListItem('disponibilite').title('Disponibilités'),
     ])
