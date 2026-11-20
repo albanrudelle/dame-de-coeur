@@ -22,7 +22,7 @@ const GALERIE = [
   { src: '/images/table-fleurs.jpg', alt: 'Table de réception avec bouquet et assiettes dressées' },
   { src: '/images/piste-bar.jpg',    alt: "Piste LED et bar de l'espace festif" },
   { src: '/images/table-numero.jpg', alt: 'Centre de table avec bougies, bouquet et numéro de table' },
-  { src: '/images/lounge.jpg',       alt: 'Espace lounge aux canapés rouges' },
+  { src: '/images/lounge-rouge.jpg', alt: 'Espace lounge aux canapés rouges et à l\'éclairage vert' },
   { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
 ]
 
