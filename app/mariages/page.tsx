@@ -32,7 +32,7 @@ const INCLUS = [
 
 const GALERIE = [
   { img: 'fresque-banc', alt: 'Fresque murale et banc en bois de la grande salle' },
-  { img: 'table-ronde',  alt: 'Table ronde dressée pour un mariage' },
+  { img: 'table-exterieur', alt: 'Longue table dressée en extérieur, sous un grand arbre' },
   { img: 'champagne',    alt: 'Service du champagne pour le vin d\'honneur' },
   { img: 'table-automne', alt: 'Longue table dressée aux couleurs de l\'automne' },
 ]

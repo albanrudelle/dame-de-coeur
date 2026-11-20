@@ -23,7 +23,7 @@ const GALERIE = [
   { src: '/images/piste-bar.jpg',    alt: "Piste LED et bar de l'espace festif" },
   { src: '/images/table-numero.jpg', alt: 'Centre de table avec bougies, bouquet et numéro de table' },
   { src: '/images/lounge-rouge.jpg', alt: 'Espace lounge aux canapés rouges et à l\'éclairage vert' },
-  { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
+  { src: '/images/jardin.jpg',       alt: "Espace extérieur du Domaine : pelouse, arbres et sureau en fleurs" },
 ]
 
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · Le bar lounge']
