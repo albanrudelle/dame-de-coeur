@@ -60,24 +60,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* INTRO */}
-      <section className="intro wrap" id="lieu">
-        <div className="eyebrow" style={{ justifyContent: 'center' }}>Le Domaine</div>
-        <div className="intro-mark" aria-hidden="true"></div>
-        <h2>Trois espaces,<br />un seul événement : le vôtre.</h2>
-        <p className="lead">
-          À Ménoire, le Domaine la Dame de Cœur réunit une grande salle aux lustres en cristal pour le repas, un espace festif avec piste LED pour la soirée et un bar lounge pour l'accueil et les cocktails. Le Domaine est loué dans son ensemble.
-        </p>
-      </section>
-
       {/* ESPACES */}
       <section className="section wrap" id="espaces">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Découvrir les lieux</div>
-            <h2>Trois espaces<br />pour une seule soirée.</h2>
+            <div className="eyebrow">Le Domaine</div>
+            <h2>Trois espaces,<br />un seul événement : le vôtre.</h2>
           </div>
-          <p className="lead">Du dîner sous les lustres à la dernière danse sur la piste LED, vos invités profitent de chaque ambiance sans quitter le Domaine.</p>
+          <p className="lead">Le Domaine est loué dans son ensemble : le repas sous les lustres, la soirée sur la piste LED, les cocktails au bar lounge, sans que vos invités changent de lieu.</p>
         </div>
         <div className="spaces-grid">
           {ESPACES.map((e, i) => (
@@ -92,7 +82,6 @@ export default async function HomePage() {
             </Link>
           ))}
         </div>
-        <p className="spaces-note">Les trois espaces sont réunis dans une seule location : le Domaine est à vous en entier.</p>
       </section>
 
       {/* CLÉ EN MAIN */}
@@ -110,7 +99,7 @@ export default async function HomePage() {
               {(s.inclus ?? INCLUS).map(l => <li key={l}>{l}</li>)}
             </ul>
             <div className="price-teaser">Location du Domaine à partir de <strong>{prix.split(' à ')[0]}</strong>, bar, son et lumière inclus. Devis gratuit.</div>
-            <p style={{ margin: '24px 0 0' }}><a href="#configurateur" className="button">Vérifier une disponibilité →</a></p>
+            <p style={{ margin: '24px 0 0' }}><Link href="/contact" className="button">Obtenir un devis gratuit →</Link></p>
           </div>
         </div>
       </section>
@@ -137,9 +126,9 @@ export default async function HomePage() {
         <div className="section-head">
           <div>
             <div className="eyebrow">L&apos;esprit du lieu</div>
-            <h2>Du dîner à la dernière danse.</h2>
+            <h2>Le Domaine en images.</h2>
           </div>
-          <p className="lead">Tables dressées sous les lustres, bar lounge, piste illuminée : voici le Domaine tel que vos invités le découvrent.</p>
+          <p className="lead">Tables dressées sous les lustres, bar lounge, piste illuminée : le Domaine tel que vos invités le découvrent.</p>
         </div>
         <div className="gallery">
           {galerie.map(g => (
@@ -152,7 +141,7 @@ export default async function HomePage() {
 
       <Temoignages />
 
-      <Faq prix={prix} />
+      <Faq prix={prix} id="faq" />
 
       {/* CONTACT */}
       <section className="contact-band">

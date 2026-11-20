@@ -24,7 +24,8 @@ export default async function ContactPage({ searchParams }: Props) {
   const defaultDate = /^\d{4}-\d{2}-\d{2}$/.test(dateParam) ? dateParam : ''
 
   const [s, dispos, temoignages] = await Promise.all([getSettings(), getDisponibilites(), getTemoignages()])
-  const t = temoignages[0]
+  // Un avis différent de celui mis en avant sur la page Mariages
+  const t = temoignages[1] ?? temoignages[0]
   // Le numéro n'est affiché que s'il a été renseigné pour de bon.
   const phoneOk = s.phoneOk
 
