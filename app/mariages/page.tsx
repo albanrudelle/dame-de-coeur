@@ -34,7 +34,7 @@ const GALERIE = [
   { img: 'fresque-banc', alt: 'Fresque murale et banc en bois de la grande salle' },
   { img: 'table-exterieur', alt: 'Longue table dressée en extérieur, sous un grand arbre' },
   { img: 'champagne',    alt: 'Service du champagne pour le vin d\'honneur' },
-  { img: 'table-automne', alt: 'Longue table dressée aux couleurs de l\'automne' },
+  { img: 'bouquet',      alt: 'Bouquet de mariage' },
 ]
 
 export default async function MariagesPage() {
