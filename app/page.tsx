@@ -20,10 +20,10 @@ const INCLUS = [
 
 const GALERIE = [
   { src: '/images/table-fleurs.jpg', alt: 'Table de réception avec bouquet et assiettes dressées' },
-  { src: '/images/piste-bar.jpg',    alt: "Piste LED et bar de l'espace festif" },
-  { src: '/images/table-numero.jpg', alt: 'Centre de table avec bougies, bouquet et numéro de table' },
-  { src: '/images/lounge.jpg',       alt: 'Espace lounge aux canapés rouges' },
+  { src: '/images/champagne.jpg',    alt: "Service du champagne pour le vin d'honneur" },
+  { src: '/images/fresque-banc.jpg', alt: 'Fresque murale et banc en bois de la grande salle' },
   { src: '/images/vase.jpg',         alt: 'Bouquet dans un vase en verre ambré' },
+  { src: '/images/jardin.jpg',       alt: "Espace extérieur du Domaine : pelouse, arbres et sureau en fleurs" },
 ]
 
 const SPACE_LINES = ['01 · L\'espace réception', '02 · L\'espace festif', '03 · Le bar lounge']
@@ -88,8 +88,8 @@ export default async function HomePage() {
       <section className="section section-tone">
         <div className="wrap combo">
           <div className="combo-visual">
-            <Image src={s.equipements.image ?? '/images/piste2.jpg'} alt={s.equipements.alt ?? "Piste de danse et bar de l'espace festif"} width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
-            <div className="plan-caption"><span>La piste et le bar de l'espace festif</span><span>Tout est déjà en place</span></div>
+            <Image src={s.equipements.image ?? '/images/lounge-rouge.jpg'} alt={s.equipements.alt ?? "Espace lounge de l'espace festif : canapés rouges, enceinte et projecteur"} width={1200} height={900} sizes="(max-width: 680px) 100vw, 50vw" />
+            <div className="plan-caption"><span>L'espace festif</span><span>Tout est déjà en place</span></div>
           </div>
           <div>
             <div className="eyebrow">Équipements</div>
