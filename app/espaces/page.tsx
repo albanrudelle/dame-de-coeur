@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PageHero } from '@/components/dc/PageHero'
-import { getEspaces, getPage, getPrix } from '@/lib/content'
+import { getEspaces, getPage } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Nos espaces | Grande salle, espace festif & bar lounge en Corrèze',
@@ -10,17 +10,21 @@ export const metadata: Metadata = {
 }
 
 export default async function EspacesPage() {
-  const [p, espaces, prix] = await Promise.all([getPage('pageEspaces'), getEspaces(), getPrix()])
+  const [p, espaces] = await Promise.all([getPage('pageEspaces'), getEspaces()])
   return (
     <div className="dc">
       <PageHero
         eyebrow="Les espaces"
         title={<>{p.titreHaut ?? 'Trois univers,'}<br /><em>{p.titreItalique ?? 'une soirée complète.'}</em></>}
-        lead={p.intro ?? "Trois espaces complémentaires, réunis pour une soirée complète : du vin d'honneur au dernier slow, vos invités ne quittent jamais le Domaine."}
+        lead={p.intro ?? "Trois espaces complémentaires, un seul Domaine : chacun a son rôle au fil de votre événement, de l'accueil des invités jusqu'à la fin de soirée."}
         img={p.image ?? '/images/table-rideau.jpg'}
         alt={p.alt ?? 'La grande salle du Domaine la Dame de Cœur'}
         note="3 espaces · 150 convives maximum"
-      />
+      >
+        <div className="hero-actions">
+          <Link className="button" href="/contact">Vérifier une disponibilité →</Link>
+        </div>
+      </PageHero>
 
       {espaces.map((e, i) => (
         <div key={e.slug} id={e.slug}>
@@ -39,7 +43,6 @@ export default async function EspacesPage() {
               <div className="tags">
                 {e.tags.map(t => <span className="tag" key={t}>{t}</span>)}
               </div>
-              <Link className="button" href="/contact">Vérifier les disponibilités →</Link>
             </div>
           </div>
           <div className="ideal">
@@ -52,8 +55,7 @@ export default async function EspacesPage() {
       <section className="dark-band">
         <div className="eyebrow">Le Domaine en exclusivité</div>
         <h2>Les trois espaces réunis,<br /><em>rien que pour vous.</em></h2>
-        <p className="lead">Vin d&apos;honneur · Repas · Soirée dansante. Le Domaine est privatisé dans son ensemble pour votre événement : vos invités ne quittent jamais le site.</p>
-        <p className="price">Fourchette indicative : <strong>{prix}</strong></p>
+        <p className="lead">Vin d&apos;honneur · Repas · Soirée dansante. Le Domaine est privatisé dans son ensemble pour votre événement : on ne loue pas une salle seule.</p>
         <div className="btn-row">
           <Link className="button button-light" href="/contact">Obtenir un devis gratuit</Link>
           <Link className="button button-outline-light" href="/mariages">En savoir plus sur les mariages</Link>

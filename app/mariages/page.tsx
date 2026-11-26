@@ -19,10 +19,8 @@ const PARCOURS = [
 ]
 
 const INCLUS = [
-  "Grande salle avec lustres en cristal (jusqu'à 150 convives)",
-  'Espace festif avec piste LED encastrée dans le sol',
-  'Bar mezzanine panoramique professionnel',
-  "Petite salle lounge pour le vin d'honneur",
+  'Les trois espaces, privatisés pour vous',
+  'Bar professionnel',
   'Son et lumière complets (régie, lasers, boule)',
   'Tables, chaises et vaisselle incluses',
   'Climatisation · Accès PMR · Parking privatif',
@@ -47,14 +45,14 @@ export default async function MariagesPage() {
       <PageHero
         eyebrow="Mariages"
         title={<>{p.titreHaut ?? 'Le lieu parfait,'}<br /><em>{p.titreItalique ?? 'pour un jour parfait.'}</em></>}
-        lead={p.intro ?? "Célébrez votre mariage dans un écrin d'élégance au cœur de la Corrèze. Du vin d'honneur jusqu'au dernier slow, le Domaine orchestre chaque moment de votre journée."}
+        lead={p.intro ?? "Célébrez votre mariage au cœur de la Corrèze. Du vin d'honneur jusqu'au dernier slow, le Domaine accueille chaque moment de votre journée, sans déplacer vos invités."}
         img={p.image ?? '/images/salle-reception.jpg'}
         alt={p.alt ?? 'Mariage au Domaine la Dame de Cœur'}
         note="Ménoire · Corrèze"
       >
         <div className="hero-actions">
           <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
-          <Link className="button button-outline" href="/espaces">Voir les espaces</Link>
+          <Link className="button button-outline" href="/espaces">Découvrir les espaces</Link>
         </div>
       </PageHero>
 
@@ -63,7 +61,7 @@ export default async function MariagesPage() {
         <div className="wrap combo combo-top">
           <div>
             <div className="eyebrow">Le parcours d&apos;une soirée</div>
-            <h2>Trois espaces,<br /><em>du repas à la dernière danse.</em></h2>
+            <h2>Votre journée,<br /><em>du vin d&apos;honneur à la dernière danse.</em></h2>
             <ol className="steps">
               {PARCOURS.map(p => (
                 <li key={p.step}>
@@ -73,7 +71,6 @@ export default async function MariagesPage() {
                 </li>
               ))}
             </ol>
-            <Link className="button" href="/contact">Obtenir un devis gratuit →</Link>
           </div>
           <div>
             <div className="panel">
@@ -103,15 +100,15 @@ export default async function MariagesPage() {
         </div>
       </section>
 
-      <Temoignages featured={0} />
+      <Temoignages featured={0} showOthers={false} />
 
-      <Faq prix={prix} />
+      <Faq prix={prix} limit={4} />
 
       <CtaBand
-        eyebrow="Votre date est peut-être encore disponible"
+        eyebrow="Une date en tête ?"
         title={p.ctaTitre ?? 'Vérifions ensemble votre date.'}
-        text={p.ctaTexte ?? 'Les samedis de juin à octobre sont les premiers réservés. Aucun engagement.'}
-        label="Vérifier les disponibilités"
+        text={p.ctaTexte ?? 'Aucun engagement : nous vous répondons avec les disponibilités et un devis personnalisé.'}
+        label="Vérifier une disponibilité"
       />
     </div>
   )

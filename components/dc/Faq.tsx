@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getFaq } from '@/lib/content'
 
 // Textes par défaut : utilisés tant qu'aucune question n'est créée dans le studio.
@@ -14,16 +15,18 @@ const ITEMS: [string, string][] = [
   ['Quel est le budget à prévoir ?', "La location du Domaine démarre autour de {prix} selon la date et les options. Le devis est gratuit et sans engagement."],
 ]
 
-export async function Faq({ prix }: { prix: string }) {
+// limit : n'affiche que les N premières questions et renvoie vers la FAQ complète de l'accueil.
+export async function Faq({ prix, id, limit }: { prix: string; id?: string; limit?: number }) {
   const source = (await getFaq()) ?? ITEMS
-  const items = source.map(([q, a]) => [q, a.replace('{prix}', prix)] as [string, string])
+  const all = source.map(([q, a]) => [q, a.replace('{prix}', prix)] as [string, string])
+  const items = limit ? all.slice(0, limit) : all
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   }
   return (
-    <section className="section wrap">
+    <section className="section wrap" id={id}>
       <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center' }}>
         <div>
           <div className="eyebrow" style={{ justifyContent: 'center' }}>Questions fréquentes</div>
@@ -38,6 +41,11 @@ export async function Faq({ prix }: { prix: string }) {
           </details>
         ))}
       </div>
+      {limit && all.length > items.length ? (
+        <p style={{ textAlign: 'center', marginTop: 24 }}>
+          <Link className="text-link" href="/#faq">Voir toutes les questions →</Link>
+        </p>
+      ) : null}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </section>
   )

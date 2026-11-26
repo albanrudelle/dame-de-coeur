@@ -43,7 +43,7 @@ export default async function SoireesPage() {
             <div className="eyebrow">Tous vos événements</div>
             <h2>Une salle,<br />mille occasions.</h2>
           </div>
-          <p className="lead">Quel que soit l&apos;événement, tout le Domaine est à vous : la grande salle pour réunir tout le monde, l&apos;espace festif pour danser, la petite salle et son bar lounge pour les cocktails et les moments conviviaux.</p>
+          <p className="lead">Quel que soit l&apos;événement, le Domaine est privatisé en entier : vous choisissez comment faire vivre chaque espace à vos invités.</p>
         </div>
         <div className="event-grid">
           {events.map(ev => (
@@ -59,7 +59,7 @@ export default async function SoireesPage() {
                   {ev.tags.map(t => <span className="tag" key={t}>{t}</span>)}
                 </div>
                 <Link className="text-link" href={`/contact?type=${encodeURIComponent(ev.type)}`}>
-                  Faire une demande →
+                  Obtenir un devis gratuit →
                 </Link>
               </div>
             </article>
@@ -67,13 +67,13 @@ export default async function SoireesPage() {
         </div>
       </section>
 
-      <Temoignages featured={2} />
+      <Temoignages featured={2} showOthers={false} />
 
       <CtaBand
-        eyebrow="Chaque événement mérite un écrin"
+        eyebrow="Une date en tête ?"
         title={p.ctaTitre ?? 'Parlons de votre soirée.'}
         text={p.ctaTexte ?? 'Contactez-nous pour vérifier les disponibilités et recevoir un devis.'}
-        label="Faire une demande"
+        label="Vérifier une disponibilité"
       />
     </div>
   )
